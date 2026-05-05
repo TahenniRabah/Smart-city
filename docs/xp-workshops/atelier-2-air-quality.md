@@ -31,9 +31,9 @@ Feature: Calcul du niveau d'alerte qualité de l'air
 
 Scenario: Détection d'une alerte critique NO2
 
-\&#x20; Given une mesure NO2 de valeur 220 dans la zone ZFE-1
+x20; Given une mesure NO2 de valeur 220 dans la zone ZFE-1
 
-\&#x20; When le microservice Air Quality analyse la mesure
+x20; When le microservice Air Quality analyse la mesure
 
-\&#x20; Then le niveau d'alerte retourné est CRITICAL
+x20; Then le niveau d'alerte retourné est CRITICAL
 
