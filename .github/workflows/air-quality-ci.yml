@@ -9,6 +9,10 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: services/air-quality-service
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
