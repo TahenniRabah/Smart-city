@@ -18,8 +18,22 @@ public class AirQualityAlertService {
         if (measurement.pollutant() == Pollutant.NO2) {
             return calculateNo2Level(measurement.value());
         }
+        if (measurement.pollutant() == Pollutant.PM10) {
+            return calculatePM10Level(measurement.value());
+        }
 
+        return null;
+    }
 
+    private AlertLevel calculatePM10Level(double value) {
+
+        if (value >= PM10_CRITICAL_THRESHOLD) {
+            return AlertLevel.CRITICAL;
+        }
+
+        if (value >= PM10_WARNING_THRESHOLD) {
+            return AlertLevel.WARNING;
+        }
         return null;
     }
 
