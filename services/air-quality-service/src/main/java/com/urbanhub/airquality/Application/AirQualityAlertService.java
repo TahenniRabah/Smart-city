@@ -9,14 +9,18 @@ public class AirQualityAlertService {
 
     private static final double NO2_WARNING_THRESHOLD = 100;
     private static final double NO2_CRITICAL_THRESHOLD = 200;
+    private static final double PM10_WARNING_THRESHOLD = 50;
+    private static final double PM10_CRITICAL_THRESHOLD = 80;
 
+    
     public AlertLevel calculateAlertLevel(AirQualityMeasurement measurement) {
-
+        
         if (measurement.pollutant() == Pollutant.NO2) {
             return calculateNo2Level(measurement.value());
         }
 
-        return AlertLevel.NORMAL;
+
+        return null;
     }
 
 

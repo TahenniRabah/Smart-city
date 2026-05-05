@@ -34,5 +34,24 @@ class AirQualityAlertServiceTest {
         assertEquals(AlertLevel.WARNING, result);
     }
 
+    @Test
+    void shouldReturnNormalWhenNo2IsBelowWarningThreshold() {
+        AirQualityMeasurement measurement =
+                new AirQualityMeasurement("ZFE-1", Pollutant.NO2, 80);
+
+        AlertLevel result = service.calculateAlertLevel(measurement);
+
+        assertEquals(AlertLevel.NORMAL, result);
+    }
+
+    @Test
+    void shouldReturnCriticalWhenPm10IsAboveCriticalThreshold() {
+        AirQualityMeasurement measurement =
+                new AirQualityMeasurement("ZFE-2", Pollutant.PM10, 90);
+
+        AlertLevel result = service.calculateAlertLevel(measurement);
+
+        assertEquals(AlertLevel.CRITICAL, result);
+    }
 
 }
