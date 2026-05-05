@@ -13,7 +13,11 @@ public class AirQualityAlertService {
             return AlertLevel.CRITICAL;
         }
 
+
+        if (measurement.pollutant() == Pollutant.NO2 && measurement.value() >= 100) {
+            return AlertLevel.WARNING;
+        }
+
         return AlertLevel.NORMAL;
     }
-
 }
