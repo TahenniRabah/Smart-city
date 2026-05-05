@@ -24,4 +24,15 @@ class AirQualityAlertServiceTest {
     }
 
 
+    @Test
+    void shouldReturnWarningWhenNo2IsBetweenWarningAndCriticalThreshold() {
+        AirQualityMeasurement measurement =
+                new AirQualityMeasurement("ZFE-1", Pollutant.NO2, 150);
+
+        AlertLevel result = service.calculateAlertLevel(measurement);
+
+        assertEquals(AlertLevel.WARNING, result);
+    }
+
+
 }

@@ -23,9 +23,6 @@ jobs:
       - name: Check Java version
         run: java --version
 
-      - name: Lint / compile
-        run: mvn -B compile
-
       - name: Run unit tests
         run: mvn -B test
 
