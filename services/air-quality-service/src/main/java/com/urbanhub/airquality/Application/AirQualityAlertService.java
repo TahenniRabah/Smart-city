@@ -3,12 +3,17 @@ package com.urbanhub.airquality.Application;
 
 import com.urbanhub.airquality.Domain.AirQualityMeasurement;
 import com.urbanhub.airquality.Domain.AlertLevel;
+import com.urbanhub.airquality.Domain.Pollutant;
 
 public class AirQualityAlertService {
 
     public AlertLevel calculateAlertLevel(AirQualityMeasurement measurement) {
 
-        return null;
+        if (measurement.pollutant() == Pollutant.NO2 && measurement.value() >= 200) {
+            return AlertLevel.CRITICAL;
+        }
+
+        return AlertLevel.NORMAL;
     }
 
 }
