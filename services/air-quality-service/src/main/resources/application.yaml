@@ -1,1 +1,15 @@
-spring.application.name=air-quality-service
+spring:
+  application:
+    name: air-quality-service
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      client-id: air-quality-service
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+urbanhub:
+  kafka:
+    topics:
+      air-quality-alert-detected: air-quality.alert.detected
