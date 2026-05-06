@@ -5,3 +5,10 @@ spring:
   application:
     name: alerting-service
 
+  kafka:
+    bootstrap-servers: localhost:9092
+
+urbanhub:
+  kafka:
+    topics:
+      air-quality-alert-detected: air-quality.alert.detected
