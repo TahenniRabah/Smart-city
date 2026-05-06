@@ -16,7 +16,7 @@ class AirQualityAlertServiceTest {
     @Test
     void shouldReturnCriticalWhenNo2IsAboveCriticalThreshold() {
         AirQualityMeasurement measurement =
-                new AirQualityMeasurement("ZFE-1", Pollutant.NO2, 220);
+                new AirQualityMeasurement("ZFE-1", "AIR-STATION-042",Pollutant.NO2, 220);
 
         AlertLevel result = service.calculateAlertLevel(measurement);
 
@@ -27,7 +27,7 @@ class AirQualityAlertServiceTest {
     @Test
     void shouldReturnWarningWhenNo2IsBetweenWarningAndCriticalThreshold() {
         AirQualityMeasurement measurement =
-                new AirQualityMeasurement("ZFE-1", Pollutant.NO2, 150);
+                new AirQualityMeasurement("ZFE-1", "AIR-STATION-042", Pollutant.NO2, 150);
 
         AlertLevel result = service.calculateAlertLevel(measurement);
 
@@ -37,7 +37,7 @@ class AirQualityAlertServiceTest {
     @Test
     void shouldReturnNormalWhenNo2IsBelowWarningThreshold() {
         AirQualityMeasurement measurement =
-                new AirQualityMeasurement("ZFE-1", Pollutant.NO2, 80);
+                new AirQualityMeasurement("ZFE-1", "AIR-STATION-042", Pollutant.NO2, 80);
 
         AlertLevel result = service.calculateAlertLevel(measurement);
 
@@ -47,7 +47,7 @@ class AirQualityAlertServiceTest {
     @Test
     void shouldReturnCriticalWhenPm10IsAboveCriticalThreshold() {
         AirQualityMeasurement measurement =
-                new AirQualityMeasurement("ZFE-2", Pollutant.PM10, 90);
+                new AirQualityMeasurement("ZFE-2", "AIR-STATION-042",Pollutant.PM10, 90);
 
         AlertLevel result = service.calculateAlertLevel(measurement);
 

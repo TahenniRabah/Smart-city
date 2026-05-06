@@ -3,8 +3,9 @@ package com.urbanhub.airquality.Application;
 
 import com.urbanhub.airquality.Domain.AirQualityMeasurement;
 import com.urbanhub.airquality.Domain.AlertLevel;
-import com.urbanhub.airquality.Domain.Pollutant;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AirQualityAlertService {
 
     private static final double NO2_WARNING_THRESHOLD = 100;
