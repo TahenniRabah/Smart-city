@@ -23,10 +23,16 @@ public class AlertingService {
             return;
         }
 
-        if ("CRITICAL".equals(event.alertLevel())) {
+        if (isCritical(event)) {
             notificationPort.notifyCsu(event);
         }
 
+
         processedEventRepository.markAsProcessed(event.eventId());
     }
+
+    private boolean isCritical(AirQualityAlertDetectedEvent event) {
+        return "CRITICAL".equals(event.alertLevel());
+    }
+
 }
