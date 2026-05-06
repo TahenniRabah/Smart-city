@@ -17,6 +17,19 @@ class AlertingServiceTest {
             new AlertingService(notificationPort, processedEventRepository);
 
     @Test
+    void shouldIgnoreEventWhenEventIdWasAlreadyProcessed() {
+        AirQualityAlertDetectedEvent event = criticalNo2Event("event-1");
+
+        when(processedEventRepository.hasAlreadyBeenProcessed("event-1"))
+                .thenReturn(true);
+
+        alertingService.handle(event);
+
+        verifyNoInteractions(notificationPort);
+        verify(processedEventRepository, never()).markAsProcessed("event-1");
+    }
+
+    @Test
     void shouldNotifyCsuWhenAirQualityAlertIsCritical() {
         AirQualityAlertDetectedEvent event = criticalNo2Event("event-1");
 
