@@ -19,6 +19,10 @@ public class AlertingService {
     }
 
     public void handle(AirQualityAlertDetectedEvent event) {
+        if (processedEventRepository.hasAlreadyBeenProcessed(event.eventId())) {
+            return;
+        }
+
         if ("CRITICAL".equals(event.alertLevel())) {
             notificationPort.notifyCsu(event);
         }
