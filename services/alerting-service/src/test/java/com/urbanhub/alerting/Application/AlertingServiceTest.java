@@ -17,6 +17,33 @@ class AlertingServiceTest {
             new AlertingService(notificationPort, processedEventRepository);
 
     @Test
+    void shouldNotNotifyCsuWhenAlertLevelIsWarning() {
+        AirQualityAlertDetectedEvent event = new AirQualityAlertDetectedEvent(
+                "event-2",
+                "AirQualityAlertDetected",
+                "1.0",
+                Instant.now(),
+                "corr-2",
+                "air-quality-service",
+                "ZFE-1",
+                "AIR-STATION-042",
+                "NO2",
+                150.0,
+                "µg/m3",
+                "WARNING",
+                100.0
+        );
+
+        when(processedEventRepository.hasAlreadyBeenProcessed("event-2"))
+                .thenReturn(false);
+
+        alertingService.handle(event);
+
+        verifyNoInteractions(notificationPort);
+        verify(processedEventRepository).markAsProcessed("event-2");
+    }
+
+    @Test
     void shouldIgnoreEventWhenEventIdWasAlreadyProcessed() {
         AirQualityAlertDetectedEvent event = criticalNo2Event("event-1");
 
