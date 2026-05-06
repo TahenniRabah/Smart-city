@@ -4,10 +4,6 @@ spring:
 
   kafka:
     bootstrap-servers: localhost:9092
-    producer:
-      client-id: air-quality-service
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 urbanhub:
   kafka:
