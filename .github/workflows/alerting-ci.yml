@@ -1,13 +1,10 @@
-name: Air Quality CI
+name: Alerting Service CI
 
 on:
   push:
-    branches:
-      - main
     paths:
-      - "services/air-quality-service/**"
-      - ".github/workflows/air-quality-ci.yml"
-
+      - "services/alerting-service/**"
+      - ".github/workflows/alerting-ci.yml"
 
 jobs:
   build-test:
@@ -15,24 +12,24 @@ jobs:
 
     defaults:
       run:
-        working-directory: services/air-quality-service
+        working-directory: services/alerting-service
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 25
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 25
           cache: maven
 
-      - name: Check Java version
-        run: java --version
+      - name: Compile
+        run: mvn -B compile
 
-      - name: Run unit tests
+      - name: Run tests
         run: mvn -B test
 
-      - name: Build package
+      - name: Build Package
         run: mvn -B package
