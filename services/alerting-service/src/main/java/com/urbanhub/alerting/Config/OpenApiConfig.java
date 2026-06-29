@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Configuration;
 public class OpenApiConfig {
 
     @Bean
-    public OpenAPI airQualityOpenAPI() {
+    public OpenAPI alertingOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("UrbanHub - Air Quality Service API")
+                        .title("UrbanHub - Alerting Service API")
                         .version("1.0.0")
-                        .description("API du microservice Air Quality pour analyser les mesures de pollution et publier des alertes Kafka."));
+                        .description("API du microservice Alerting pour exposer les informations liées aux alertes Smart City."));
     }
 }
 

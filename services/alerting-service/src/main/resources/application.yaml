@@ -12,3 +12,12 @@ urbanhub:
   kafka:
     topics:
       air-quality-alert-detected: air-quality.alert.detected
+
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
