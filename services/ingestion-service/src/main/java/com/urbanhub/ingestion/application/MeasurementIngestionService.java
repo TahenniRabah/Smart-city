@@ -27,6 +27,7 @@ public class MeasurementIngestionService {
     }
 
     public IngestionResult ingest(RawMeasurementCommand command) {
+        validate(command);
         String correlationId = correlationIdGenerator.generate();
 
         MeasurementReceivedEvent event = new MeasurementReceivedEvent(
@@ -46,5 +47,11 @@ public class MeasurementIngestionService {
         publisher.publish(event);
 
         return new IngestionResult(ACCEPTED, correlationId);
+    }
+
+    private void validate(RawMeasurementCommand command) {
+        if (command.zoneId() == null || command.zoneId().isBlank()) {
+            throw new IllegalArgumentException("zoneId is required");
+        }
     }
 }
