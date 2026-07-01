@@ -1,0 +1,74 @@
+openapi: 3.1.0
+info:
+  title: UrbanHub - Ingestion Service API
+  description: API du service d’ingestion pour recevoir les mesures brutes IoT et
+    publier MeasurementReceived.
+  version: 1.0.0
+servers:
+- url: http://localhost:8082
+  description: Generated server url
+tags:
+- name: Ingestion
+  description: Réception des mesures brutes IoT
+paths:
+  /api/ingestion/measurements:
+    post:
+      tags:
+      - Ingestion
+      summary: Recevoir une mesure brute
+      description: "Reçoit une mesure brute depuis une passerelle IoT, génère un correlationId\
+        \ et publie un événement MeasurementReceived."
+      operationId: ingest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MeasurementIngestionRequest"
+        required: true
+      responses:
+        "202":
+          description: Accepted
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/MeasurementIngestionResponse"
+components:
+  schemas:
+    MeasurementIngestionRequest:
+      type: object
+      description: Mesure brute envoyée par une passerelle IoT
+      properties:
+        zoneId:
+          type: string
+          description: Identifiant de la zone
+          example: ZFE-1
+        stationId:
+          type: string
+          description: Identifiant de la station
+          example: AIR-STATION-042
+        indicator:
+          type: string
+          description: Indicateur mesuré
+          example: NO2
+        value:
+          type: number
+          format: double
+          description: Valeur mesurée
+          example: "220.5"
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp de la mesure brute
+          example: 2026-05-06T14:29:58Z
+    MeasurementIngestionResponse:
+      type: object
+      description: Réponse d'acceptation d'une mesure brute
+      properties:
+        status:
+          type: string
+          description: Statut de prise en charge
+          example: ACCEPTED
+        correlationId:
+          type: string
+          description: Identifiant de corrélation de bout en bout
+          example: corr-12345
