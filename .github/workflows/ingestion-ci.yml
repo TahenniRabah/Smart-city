@@ -1,0 +1,39 @@
+name: Ingestion Service CI
+
+on:
+  push:
+    paths:
+      - "services/ingestion-service/**"
+      - ".github/workflows/ingestion-ci.yml"
+  pull_request:
+    paths:
+      - "services/ingestion-service/**"
+      - ".github/workflows/ingestion-ci.yml"
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: services/ingestion-service
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - name: Compile
+        run: mvn -B compile
+
+      - name: Run tests
+        run: mvn -B test
+
+      - name: Build
+        run: mvn -B package
