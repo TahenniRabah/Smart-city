@@ -52,5 +52,24 @@ public class MeasurementIngestionServiceTest {
         assertEquals("NO2", event.indicator());
         assertEquals(220.5, event.value());
     }
+
+    @Test
+    void shouldRejectMeasurementWithoutZoneId() {
+        RawMeasurementCommand command = new RawMeasurementCommand(
+                "",
+                "AIR-STATION-042",
+                "NO2",
+                220.5,
+                Instant.parse("2026-05-06T14:29:58Z")
+        );
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> service.ingest(command)
+        );
+
+        assertEquals("zoneId is required", exception.getMessage());
+        verifyNoInteractions(publisher);
+    }
 }
 
