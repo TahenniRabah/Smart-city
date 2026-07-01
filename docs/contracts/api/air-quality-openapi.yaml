@@ -1,0 +1,73 @@
+openapi: 3.1.0
+info:
+  title: UrbanHub - Air Quality Service API
+  description: API du microservice Air Quality pour analyser les mesures de pollution
+    et publier des alertes Kafka.
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+tags:
+- name: Air Quality
+  description: Analyse des mesures de qualité de l'air
+paths:
+  /api/air-quality/measurements:
+    post:
+      tags:
+      - Air Quality
+      summary: Analyser une mesure de qualité de l'air
+      description: Calcule le niveau d'alerte d'une mesure NO2 ou PM10 et publie un
+        événement Kafka si le niveau est WARNING ou CRITICAL.
+      operationId: analyzeMeasurement
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AirQualityMeasurementRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AirQualityAlertResponse"
+components:
+  schemas:
+    AirQualityMeasurementRequest:
+      type: object
+      description: Requête d'analyse d'une mesure de qualité de l'air
+      properties:
+        zoneId:
+          type: string
+          description: Identifiant de la zone urbaine
+          example: ZFE-1
+        stationId:
+          type: string
+          description: Identifiant de la station de mesure
+          example: AIR-STATION-042
+        pollutant:
+          type: string
+          description: Polluant mesuré
+          enum:
+          - NO2
+          - PM10
+          - PM25
+          example: NO2
+        value:
+          type: number
+          format: double
+          description: Valeur mesurée
+          example: 220.5
+    AirQualityAlertResponse:
+      type: object
+      description: Réponse contenant le niveau d'alerte calculé
+      properties:
+        alertLevel:
+          type: string
+          description: Niveau d'alerte calculé
+          enum:
+          - NORMAL
+          - WARNING
+          - CRITICAL
+          example: CRITICAL
