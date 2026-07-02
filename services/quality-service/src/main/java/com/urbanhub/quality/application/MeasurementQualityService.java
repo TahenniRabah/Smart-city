@@ -40,12 +40,20 @@ public class MeasurementQualityService {
     }
 
     private String rejectionReason(MeasurementReceivedEvent event) {
-        if (event.zoneId() == null || event.zoneId().isBlank()) {
+        if (isBlank(event.zoneId())) {
             return "zoneId is required";
         }
 
-        if (event.stationId() == null || event.stationId().isBlank()) {
+        if (isBlank(event.stationId())) {
             return "stationId is required";
+        }
+
+        if (isBlank(event.indicator())) {
+            return "indicator is required";
+        }
+
+        if (event.timestamp() == null) {
+            return "timestamp is required";
         }
 
         if (event.value() < 0) {
@@ -90,4 +98,10 @@ public class MeasurementQualityService {
                 reason
         );
     }
+
+
+    private boolean isBlank(String value) {
+        return value == null || value.isBlank();
+    }
+
 }
