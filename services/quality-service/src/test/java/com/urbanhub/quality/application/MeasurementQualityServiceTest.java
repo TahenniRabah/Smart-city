@@ -86,4 +86,52 @@ class MeasurementQualityServiceTest {
                         && rejectedEvent.reason().equals("zoneId is required")
         ));
     }
+
+    @Test
+    void shouldPublishMeasurementRejectedWhenStationIdIsMissing() {
+        MeasurementReceivedEvent receivedEvent = new MeasurementReceivedEvent(
+                "evt-003",
+                "MeasurementReceived",
+                "1.0",
+                "corr-12345",
+                Instant.parse("2026-05-06T14:30:00Z"),
+                "ingestion-service",
+                "ZFE-1",
+                "",
+                "NO2",
+                220.5,
+                Instant.parse("2026-05-06T14:29:58Z")
+        );
+
+        service.checkQuality(receivedEvent);
+
+        verifyNoInteractions(validatedPublisher);
+        verify(rejectedPublisher).publish(argThat(rejectedEvent ->
+                rejectedEvent.reason().equals("stationId is required")
+        ));
+    }
+
+    @Test
+    void shouldPublishMeasurementRejectedWhenValueIsNegative() {
+        MeasurementReceivedEvent receivedEvent = new MeasurementReceivedEvent(
+                "evt-004",
+                "MeasurementReceived",
+                "1.0",
+                "corr-12345",
+                Instant.parse("2026-05-06T14:30:00Z"),
+                "ingestion-service",
+                "ZFE-1",
+                "AIR-STATION-042",
+                "NO2",
+                -1.0,
+                Instant.parse("2026-05-06T14:29:58Z")
+        );
+
+        service.checkQuality(receivedEvent);
+
+        verifyNoInteractions(validatedPublisher);
+        verify(rejectedPublisher).publish(argThat(rejectedEvent ->
+                rejectedEvent.reason().equals("value must be positive or zero")
+        ));
+    }
 }
