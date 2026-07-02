@@ -1,4 +1,4 @@
-package com.urbanhub.airquality.Config;
+package com.urbanhub.airquality.config;
 
 import com.urbanhub.airquality.events.AirQualityAlertDetectedEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;
