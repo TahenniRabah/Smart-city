@@ -37,6 +37,27 @@ Le service calcule un niveau d'alerte à partir d'une mesure de pollution.
 \- valeur >= 80 : CRITICAL
 
 
+## Kafka
+
+### Consumes
+
+| Topic | Event |
+|---|---|
+| `measurements.validated` | `MeasurementValidated` |
+
+### Publishes
+
+| Topic | Event |
+|---|---|
+| `air-quality.alert.detected` | `AirQualityAlertDetected` |
+
+
+## Architecture role
+
+This service corresponds to the analysis service in the UrbanHub sequence diagram.
+It consumes validated measurements and detects air quality threshold violations.
+
+
 
 \## Lancer les tests
 
