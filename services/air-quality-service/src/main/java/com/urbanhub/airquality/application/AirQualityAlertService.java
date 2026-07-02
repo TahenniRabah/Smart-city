@@ -1,4 +1,4 @@
-package com.urbanhub.airquality.Application;
+package com.urbanhub.airquality.application;
 
 
 import com.urbanhub.airquality.Domain.AirQualityMeasurement;

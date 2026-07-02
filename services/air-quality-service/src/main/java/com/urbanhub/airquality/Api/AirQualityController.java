@@ -1,6 +1,6 @@
 package com.urbanhub.airquality.Api;
 
-import com.urbanhub.airquality.Application.AirQualityAnalysisService;
+import com.urbanhub.airquality.application.AirQualityAnalysisService;
 import com.urbanhub.airquality.Domain.AirQualityMeasurement;
 import com.urbanhub.airquality.Domain.AlertLevel;
 import io.swagger.v3.oas.annotations.Operation;

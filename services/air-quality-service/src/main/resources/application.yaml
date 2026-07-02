@@ -11,6 +11,7 @@ spring:
 urbanhub:
   kafka:
     topics:
+      measurements-validated: measurements.validated
       air-quality-alert-detected: air-quality.alert.detected
 
 
