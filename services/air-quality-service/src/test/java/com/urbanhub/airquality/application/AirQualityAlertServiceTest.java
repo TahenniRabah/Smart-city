@@ -1,8 +1,8 @@
 package com.urbanhub.airquality.application;
 
-import com.urbanhub.airquality.Domain.AirQualityMeasurement;
-import com.urbanhub.airquality.Domain.AlertLevel;
-import com.urbanhub.airquality.Domain.Pollutant;
+import com.urbanhub.airquality.domain.AirQualityMeasurement;
+import com.urbanhub.airquality.domain.AlertLevel;
+import com.urbanhub.airquality.domain.Pollutant;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

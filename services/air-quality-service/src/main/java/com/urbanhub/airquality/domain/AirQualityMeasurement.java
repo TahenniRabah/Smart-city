@@ -1,4 +1,4 @@
-package com.urbanhub.airquality.Domain;
+package com.urbanhub.airquality.domain;
 
 public record AirQualityMeasurement(
         String zoneId,

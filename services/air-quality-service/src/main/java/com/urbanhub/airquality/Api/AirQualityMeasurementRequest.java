@@ -1,6 +1,6 @@
 package com.urbanhub.airquality.Api;
 
-import com.urbanhub.airquality.Domain.Pollutant;
+import com.urbanhub.airquality.domain.Pollutant;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Requête d'analyse d'une mesure de qualité de l'air")

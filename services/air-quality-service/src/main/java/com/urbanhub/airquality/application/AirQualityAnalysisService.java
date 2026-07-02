@@ -1,9 +1,9 @@
 
 package com.urbanhub.airquality.application;
 
-import com.urbanhub.airquality.Domain.AirQualityMeasurement;
-import com.urbanhub.airquality.Domain.AlertLevel;
-import com.urbanhub.airquality.Domain.Pollutant;
+import com.urbanhub.airquality.domain.AirQualityMeasurement;
+import com.urbanhub.airquality.domain.AlertLevel;
+import com.urbanhub.airquality.domain.Pollutant;
 import com.urbanhub.airquality.events.AirQualityAlertDetectedEvent;
 import com.urbanhub.airquality.messaging.AirQualityAlertProducer;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,8 @@
 package com.urbanhub.airquality.Api;
 
 import com.urbanhub.airquality.application.AirQualityAnalysisService;
-import com.urbanhub.airquality.Domain.AirQualityMeasurement;
-import com.urbanhub.airquality.Domain.AlertLevel;
+import com.urbanhub.airquality.domain.AirQualityMeasurement;
+import com.urbanhub.airquality.domain.AlertLevel;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
