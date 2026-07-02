@@ -60,4 +60,30 @@ class MeasurementQualityServiceTest {
                 Instant.parse("2026-05-06T14:29:58Z")
         );
     }
+
+    @Test
+    void shouldPublishMeasurementRejectedWhenZoneIdIsMissing() {
+        MeasurementReceivedEvent receivedEvent = new MeasurementReceivedEvent(
+                "evt-002",
+                "MeasurementReceived",
+                "1.0",
+                "corr-12345",
+                Instant.parse("2026-05-06T14:30:00Z"),
+                "ingestion-service",
+                "",
+                "AIR-STATION-042",
+                "NO2",
+                220.5,
+                Instant.parse("2026-05-06T14:29:58Z")
+        );
+
+        service.checkQuality(receivedEvent);
+
+        verifyNoInteractions(validatedPublisher);
+        verify(rejectedPublisher).publish(argThat(rejectedEvent ->
+                rejectedEvent.eventType().equals("MeasurementRejected")
+                        && rejectedEvent.correlationId().equals("corr-12345")
+                        && rejectedEvent.reason().equals("zoneId is required")
+        ));
+    }
 }
