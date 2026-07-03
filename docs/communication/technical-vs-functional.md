@@ -1,8 +1,8 @@
-\# Communication technique vs fonctionnelle
+# Communication technique vs fonctionnelle
 
 
 
-\## Communication fonctionnelle
+## Communication fonctionnelle
 
 
 
@@ -14,7 +14,7 @@ Lorsqu’une mesure dépasse un seuil critique, une alerte est transmise au cent
 
 
 
-\## Communication technique
+## Communication technique
 
 
 
