@@ -1,69 +1,97 @@
-\# Air Quality Service
+# Air Quality Service
 
+## Responsabilité
 
+Le `air-quality-service` analyse les mesures validées de qualité de l’air et calcule un niveau d’alerte.
 
-Microservice UrbanHub responsable du calcul du niveau d'alerte qualité de l'air.
+Il publie un événement `AirQualityAlertDetected` si le niveau est `WARNING` ou `CRITICAL`.
 
+\---
 
+## Port
 
-\## Règle métier
+```text
+8080
+```
 
+\---
 
+## API REST
 
-Le service calcule un niveau d'alerte à partir d'une mesure de pollution.
+Endpoint conservé pour les tests manuels :
 
+```http
+POST /api/air-quality/measurements
+```
 
-
-\### NO2
-
-
-
-\- valeur < 100 : NORMAL
-
-\- valeur >= 100 et < 200 : WARNING
-
-\- valeur >= 200 : CRITICAL
-
-
-
-\### PM10
-
-
-
-\- valeur < 50 : NORMAL
-
-\- valeur >= 50 et < 80 : WARNING
-
-\- valeur >= 80 : CRITICAL
-
+\---
 
 ## Kafka
 
-### Consumes
+### Consomme
 
-| Topic | Event |
-|---|---|
-| `measurements.validated` | `MeasurementValidated` |
+```text
+measurements.validated
+```
 
-### Publishes
+### Publie
 
-| Topic | Event |
-|---|---|
-| `air-quality.alert.detected` | `AirQualityAlertDetected` |
+```text
+air-quality.alert.detected
+```
 
+\---
 
-## Architecture role
+## Règles métier
 
-This service corresponds to the analysis service in the UrbanHub sequence diagram.
-It consumes validated measurements and detects air quality threshold violations.
+### NO2
 
+```text
+value < 100         → NORMAL
+100 <= value < 200  → WARNING
+value >= 200        → CRITICAL
+```
 
+### PM10
 
-\## Lancer les tests
+```text
+value < 50          → NORMAL
+50 <= value < 80    → WARNING
+value >= 80         → CRITICAL
+```
 
+\---
 
+## Lancer
 
-```bash
+```shell
+mvn spring-boot:run
+```
 
+\---
+
+## Tests
+
+```shell
 mvn test
+```
+
+\---
+
+## Swagger
+
+```text
+http://localhost:8080/swagger-ui.html
+```
+
+\---
+
+## Contrats
+
+```text
+docs/contracts/api/air-quality-openapi.yaml
+docs/contracts/events/air-quality-alert-detected.md
+```
+
+
 

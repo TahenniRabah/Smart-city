@@ -4,6 +4,9 @@
 
 `air-quality.alert.detected`
 
+## Input Source
+`measurements.validated`
+
 ## Producer
 
 `air-quality-service`
