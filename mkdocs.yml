@@ -1,0 +1,41 @@
+site_name: UrbanHub Smart City
+site_description: Documentation technique et pédagogique du projet Smart City UrbanHub
+site_author: UrbanHub Team
+
+docs_dir: docs
+site_dir: site
+
+nav:
+  - Accueil: index.md
+
+  - Clean Code:
+      - SOLID, DRY, KISS: clean-code/clean-code-examples.md
+
+  - Tests:
+      - Stratégie de tests: tests/testing-strategy.md
+
+  - Design Patterns:
+      - Sensor State Pattern: design-patterns/sensor-state-pattern.md
+
+  - Outils:
+      - Outils utilisés: tools/tools-used.md
+
+  - Communication:
+      - Technique vs fonctionnelle: communication/technical-vs-functional.md
+
+  - Conventions:
+      - Conventional Commits: conventions/conventional-commits.md
+
+  - Contrats:
+      - Vue d’ensemble: contracts/README.md
+      - Événements:
+          - AirQualityAlertDetected: contracts/events/air-quality-alert-detected.md
+          - MeasurementReceived: contracts/events/measurement-received.md
+          - MeasurementValidated: contracts/events/measurement-validated.md
+          - MeasurementRejected: contracts/events/measurement-rejected.md
+
+  - Ateliers XP:
+      - Atelier 2 — Air Quality: xp-workshops/atelier-2-air-quality.md
+      - Atelier 3 — Smart City distribuée: xp-workshops/atelier-3-smart-city-distributed.md
+  - Architecture:
+      - Flux événementiel: architecture/sequence-flow.md
