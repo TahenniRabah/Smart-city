@@ -1,0 +1,42 @@
+openapi: 3.1.0
+info:
+  title: UrbanHub - Alerting Service API
+  description: API du microservice Alerting pour exposer les informations liées aux
+    alertes Smart City.
+  version: 1.0.0
+servers:
+- url: http://localhost:8081
+  description: Generated server url
+tags:
+- name: Alerting
+  description: Supervision du microservice d'alerting
+paths:
+  /api/alerting/status:
+    get:
+      tags:
+      - Alerting
+      summary: Consulter le statut du service d'alerting
+      description: Retourne un statut simple permettant de vérifier que le microservice
+        Alerting est disponible.
+      operationId: status
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AlertingStatusResponse"
+components:
+  schemas:
+    AlertingStatusResponse:
+      type: object
+      description: Statut du microservice Alerting
+      properties:
+        status:
+          type: string
+          description: Statut du service
+          example: UP
+        service:
+          type: string
+          description: Nom du service
+          example: alerting-service
