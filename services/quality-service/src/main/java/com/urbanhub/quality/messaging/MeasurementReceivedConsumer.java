@@ -10,11 +10,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class MeasurementReceivedConsumer {
 
-    private static final Logger log = LoggerFactory.getLogger(MeasurementReceivedConsumer.class);
+    private static final Logger log =
+            LoggerFactory.getLogger(MeasurementReceivedConsumer.class);
 
     private final MeasurementQualityService qualityService;
 
-    public MeasurementReceivedConsumer(MeasurementQualityService qualityService) {
+    public MeasurementReceivedConsumer(
+            MeasurementQualityService qualityService
+    ) {
         this.qualityService = qualityService;
     }
 
@@ -23,12 +26,15 @@ public class MeasurementReceivedConsumer {
             containerFactory = "measurementReceivedKafkaListenerContainerFactory"
     )
     public void consume(MeasurementReceivedEvent event) {
+
         log.info(
-                "Measurement received for quality check: correlationId={}, zoneId={}, stationId={}, indicator={}",
+                "MeasurementReceived consumed: eventId={}, correlationId={}, zoneId={}, stationId={}, indicator={}, value={}",
+                event.eventId(),
                 event.correlationId(),
                 event.zoneId(),
                 event.stationId(),
-                event.indicator()
+                event.indicator(),
+                event.value()
         );
 
         qualityService.checkQuality(event);

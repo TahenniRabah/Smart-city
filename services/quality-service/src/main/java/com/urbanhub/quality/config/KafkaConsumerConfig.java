@@ -21,31 +21,54 @@ public class KafkaConsumerConfig {
     private String bootstrapServers;
 
     @Bean
-    public ConsumerFactory<String, MeasurementReceivedEvent> measurementReceivedConsumerFactory() {
-        JsonDeserializer<MeasurementReceivedEvent> deserializer =
-                new JsonDeserializer<>(MeasurementReceivedEvent.class);
+    public ConsumerFactory<String, MeasurementReceivedEvent>
+    measurementReceivedConsumerFactory() {
 
-        deserializer.ignoreTypeHeaders();
+        JsonDeserializer<MeasurementReceivedEvent> valueDeserializer =
+                new JsonDeserializer<>(
+                        MeasurementReceivedEvent.class,
+                        false
+                );
 
         Map<String, Object> config = new HashMap<>();
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        config.put(ConsumerConfig.GROUP_ID_CONFIG, "quality-service");
-        config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
+        config.put(
+                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
+                bootstrapServers
+        );
+
+        config.put(
+                ConsumerConfig.GROUP_ID_CONFIG,
+                "quality-service-v2"
+        );
+
+        config.put(
+                ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,
+                "earliest"
+        );
+
+        config.put(
+                ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,
+                false
+        );
 
         return new DefaultKafkaConsumerFactory<>(
                 config,
                 new StringDeserializer(),
-                deserializer
+                valueDeserializer
         );
     }
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, MeasurementReceivedEvent>
     measurementReceivedKafkaListenerContainerFactory() {
+
         ConcurrentKafkaListenerContainerFactory<String, MeasurementReceivedEvent> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
 
-        factory.setConsumerFactory(measurementReceivedConsumerFactory());
+        factory.setConsumerFactory(
+                measurementReceivedConsumerFactory()
+        );
 
         return factory;
     }
