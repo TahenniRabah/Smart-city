@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 @RestController
-@RequestMapping("/api/ingestion")
+ 
 @Tag(name = "Ingestion", description = "Réception des mesures brutes IoT")
 public class IngestionController {
 
