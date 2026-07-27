@@ -1,4 +1,4 @@
-\# Conventional Commits
+# Conventional Commits
 
 
 
@@ -6,27 +6,27 @@ Le projet utilise une convention de commits inspirée de Conventional Commits.
 
 
 
-\## Types utilisés
+## Types utilisés
 
 
 
-\- `feat`: nouvelle fonctionnalité
+- `feat`: nouvelle fonctionnalité
 
-\- `fix`: correction
+- `fix`: correction
 
-\- `docs`: documentation
+- `docs`: documentation
 
-\- `test`: tests
+- `test`: tests
 
-\- `refactor`: refactoring sans changement fonctionnel
+- `refactor`: refactoring sans changement fonctionnel
 
-\- `ci`: pipeline CI
+- `ci`: pipeline CI
 
-\- `chore`: tâches techniques
+- `chore`: tâches techniques
 
 
 
-\## Exemples
+## Exemples
 
 
 
