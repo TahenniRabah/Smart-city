@@ -30,12 +30,31 @@ services:
       test:
         [
           "CMD-SHELL",
-          "/opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:29092 --list > /dev/null 2>&1"
+          "/opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:29092 --list > /dev/null 2>&1",
         ]
       interval: 10s
       timeout: 10s
       retries: 15
       start_period: 30s
+
+    networks:
+      - urbanhub-network
+
+    restart: unless-stopped
+
+  kafka-console:
+    image: redpandadata/console:v3.9.0
+    container_name: urbanhub-kafka-console
+
+    ports:
+      - "8090:8080"
+
+    environment:
+      KAFKA_BROKERS: kafka:29092
+
+    depends_on:
+      kafka:
+        condition: service_healthy
 
     networks:
       - urbanhub-network
@@ -69,7 +88,7 @@ services:
           "curl",
           "--fail",
           "--silent",
-          "http://localhost:8082/actuator/health/readiness"
+          "http://localhost:8082/actuator/health/readiness",
         ]
       interval: 10s
       timeout: 5s
@@ -110,7 +129,7 @@ services:
           "curl",
           "--fail",
           "--silent",
-          "http://localhost:8083/actuator/health/readiness"
+          "http://localhost:8083/actuator/health/readiness",
         ]
       interval: 10s
       timeout: 5s
@@ -151,7 +170,7 @@ services:
           "curl",
           "--fail",
           "--silent",
-          "http://localhost:8080/actuator/health/readiness"
+          "http://localhost:8080/actuator/health/readiness",
         ]
       interval: 10s
       timeout: 5s
@@ -192,7 +211,7 @@ services:
           "curl",
           "--fail",
           "--silent",
-          "http://localhost:8081/actuator/health/readiness"
+          "http://localhost:8081/actuator/health/readiness",
         ]
       interval: 10s
       timeout: 5s
