@@ -21,18 +21,33 @@ public class KafkaProducerConfig {
     private String bootstrapServers;
 
     @Bean
-    public ProducerFactory<String, AirQualityAlertDetectedEvent> airQualityAlertProducerFactory() {
+    public ProducerFactory<String, AirQualityAlertDetectedEvent>
+    airQualityAlertProducerFactory() {
+
         Map<String, Object> config = new HashMap<>();
 
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JacksonJsonSerializer.class);
+        config.put(
+                ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
+                bootstrapServers
+        );
 
-        return new DefaultKafkaProducerFactory<>(config);
+        JacksonJsonSerializer<AirQualityAlertDetectedEvent> valueSerializer =
+                new JacksonJsonSerializer<AirQualityAlertDetectedEvent>()
+                        .noTypeInfo();
+
+        return new DefaultKafkaProducerFactory<>(
+                config,
+                new StringSerializer(),
+                valueSerializer
+        );
     }
 
     @Bean
-    public KafkaTemplate<String, AirQualityAlertDetectedEvent> airQualityAlertKafkaTemplate() {
-        return new KafkaTemplate<>(airQualityAlertProducerFactory());
+    public KafkaTemplate<String, AirQualityAlertDetectedEvent>
+    airQualityAlertKafkaTemplate() {
+
+        return new KafkaTemplate<>(
+                airQualityAlertProducerFactory()
+        );
     }
 }

@@ -13,13 +13,18 @@ public class AirQualityAlertProducer {
 
     public AirQualityAlertProducer(
             KafkaTemplate<String, AirQualityAlertDetectedEvent> kafkaTemplate,
-            @Value("${urbanhub.kafka.topics.air-quality-alert-detected}") String topicName
+            @Value("${urbanhub.kafka.topics.air-quality-alert-detected}")
+            String topicName
     ) {
         this.kafkaTemplate = kafkaTemplate;
         this.topicName = topicName;
     }
 
     public void publish(AirQualityAlertDetectedEvent event) {
-        kafkaTemplate.send(topicName, event.zoneId(), event);
+        kafkaTemplate.send(
+                topicName,
+                event.zoneId(),
+                event
+        );
     }
 }
