@@ -1,12 +1,11 @@
 package com.urbanhub.ingestion.config;
 
-
 import com.urbanhub.ingestion.events.MeasurementReceivedEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
@@ -22,19 +21,33 @@ public class KafkaProducerConfig {
     private String bootstrapServers;
 
     @Bean
-    public ProducerFactory<String, MeasurementReceivedEvent> measurementReceivedProducerFactory() {
+    public ProducerFactory<String, MeasurementReceivedEvent>
+    measurementReceivedProducerFactory() {
+
         Map<String, Object> config = new HashMap<>();
 
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        config.put(
+                ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
+                bootstrapServers
+        );
 
-        return new DefaultKafkaProducerFactory<>(config);
+        JsonSerializer<MeasurementReceivedEvent> valueSerializer =
+                new JsonSerializer<MeasurementReceivedEvent>()
+                        .noTypeInfo();
+
+        return new DefaultKafkaProducerFactory<>(
+                config,
+                new StringSerializer(),
+                valueSerializer
+        );
     }
 
     @Bean
-    public KafkaTemplate<String, MeasurementReceivedEvent> measurementReceivedKafkaTemplate() {
-        return new KafkaTemplate<>(measurementReceivedProducerFactory());
+    public KafkaTemplate<String, MeasurementReceivedEvent>
+    measurementReceivedKafkaTemplate() {
+
+        return new KafkaTemplate<>(
+                measurementReceivedProducerFactory()
+        );
     }
 }
-
