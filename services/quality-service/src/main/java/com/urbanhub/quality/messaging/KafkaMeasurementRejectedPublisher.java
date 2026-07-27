@@ -7,14 +7,16 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class KafkaMeasurementRejectedPublisher implements MeasurementRejectedPublisher {
+public class KafkaMeasurementRejectedPublisher
+        implements MeasurementRejectedPublisher {
 
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final String topicName;
 
     public KafkaMeasurementRejectedPublisher(
             KafkaTemplate<String, Object> kafkaTemplate,
-            @Value("${urbanhub.kafka.topics.measurements-rejected}") String topicName
+            @Value("${urbanhub.kafka.topics.measurements-rejected}")
+            String topicName
     ) {
         this.kafkaTemplate = kafkaTemplate;
         this.topicName = topicName;
@@ -22,6 +24,10 @@ public class KafkaMeasurementRejectedPublisher implements MeasurementRejectedPub
 
     @Override
     public void publish(MeasurementRejectedEvent event) {
-        kafkaTemplate.send(topicName, event.zoneId(), event);
+        kafkaTemplate.send(
+                topicName,
+                event.zoneId(),
+                event
+        );
     }
 }

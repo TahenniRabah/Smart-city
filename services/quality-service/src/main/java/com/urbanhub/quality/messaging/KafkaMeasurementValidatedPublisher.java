@@ -14,7 +14,8 @@ public class KafkaMeasurementValidatedPublisher implements MeasurementValidatedP
 
     public KafkaMeasurementValidatedPublisher(
             KafkaTemplate<String, Object> kafkaTemplate,
-            @Value("${urbanhub.kafka.topics.measurements-validated}") String topicName
+            @Value("${urbanhub.kafka.topics.measurements-validated}")
+            String topicName
     ) {
         this.kafkaTemplate = kafkaTemplate;
         this.topicName = topicName;
@@ -22,6 +23,10 @@ public class KafkaMeasurementValidatedPublisher implements MeasurementValidatedP
 
     @Override
     public void publish(MeasurementValidatedEvent event) {
-        kafkaTemplate.send(topicName, event.zoneId(), event);
+        kafkaTemplate.send(
+                topicName,
+                event.zoneId(),
+                event
+        );
     }
 }

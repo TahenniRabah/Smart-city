@@ -23,15 +23,26 @@ public class KafkaProducerConfig {
     public ProducerFactory<String, Object> qualityProducerFactory() {
         Map<String, Object> config = new HashMap<>();
 
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        config.put(
+                ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
+                bootstrapServers
+        );
 
-        return new DefaultKafkaProducerFactory<>(config);
+        JsonSerializer<Object> valueSerializer =
+                new JsonSerializer<Object>()
+                        .noTypeInfo();
+
+        return new DefaultKafkaProducerFactory<>(
+                config,
+                new StringSerializer(),
+                valueSerializer
+        );
     }
 
     @Bean
     public KafkaTemplate<String, Object> qualityKafkaTemplate() {
-        return new KafkaTemplate<>(qualityProducerFactory());
+        return new KafkaTemplate<>(
+                qualityProducerFactory()
+        );
     }
 }
