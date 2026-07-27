@@ -10,7 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class AirQualityAlertConsumer {
 
-    private static final Logger log = LoggerFactory.getLogger(AirQualityAlertConsumer.class);
+    private static final Logger log =
+            LoggerFactory.getLogger(AirQualityAlertConsumer.class);
 
     private final AlertingService alertingService;
 
@@ -23,11 +24,13 @@ public class AirQualityAlertConsumer {
             containerFactory = "airQualityAlertKafkaListenerContainerFactory"
     )
     public void consume(AirQualityAlertDetectedEvent event) {
+
         log.info(
-                "Air quality alert consumed: eventId={}, correlationId={}, zoneId={}, pollutant={}, level={}",
+                "AirQualityAlertDetected consumed: eventId={}, correlationId={}, zoneId={}, stationId={}, pollutant={}, level={}",
                 event.eventId(),
                 event.correlationId(),
                 event.zoneId(),
+                event.stationId(),
                 event.pollutant(),
                 event.alertLevel()
         );

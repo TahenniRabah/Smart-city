@@ -21,32 +21,55 @@ public class KafkaConsumerConfig {
     private String bootstrapServers;
 
     @Bean
-    public ConsumerFactory<String, AirQualityAlertDetectedEvent> airQualityAlertConsumerFactory() {
-        JacksonJsonDeserializer<AirQualityAlertDetectedEvent> deserializer =
-                new JacksonJsonDeserializer<>(AirQualityAlertDetectedEvent.class);
+    public ConsumerFactory<String, AirQualityAlertDetectedEvent>
+    airQualityAlertConsumerFactory() {
 
-        deserializer.ignoreTypeHeaders();
+        JacksonJsonDeserializer<AirQualityAlertDetectedEvent> valueDeserializer =
+                new JacksonJsonDeserializer<>(
+                        AirQualityAlertDetectedEvent.class
+                );
+
+        valueDeserializer.ignoreTypeHeaders();
 
         Map<String, Object> config = new HashMap<>();
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        config.put(ConsumerConfig.GROUP_ID_CONFIG, "alerting-service");
-        config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+
+        config.put(
+                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
+                bootstrapServers
+        );
+
+        config.put(
+                ConsumerConfig.GROUP_ID_CONFIG,
+                "alerting-service-v2"
+        );
+
+        config.put(
+                ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,
+                "earliest"
+        );
+
+        config.put(
+                ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,
+                false
+        );
 
         return new DefaultKafkaConsumerFactory<>(
                 config,
                 new StringDeserializer(),
-                deserializer
+                valueDeserializer
         );
     }
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, AirQualityAlertDetectedEvent>
     airQualityAlertKafkaListenerContainerFactory() {
+
         ConcurrentKafkaListenerContainerFactory<String, AirQualityAlertDetectedEvent> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
 
-        factory.setConsumerFactory(airQualityAlertConsumerFactory());
+        factory.setConsumerFactory(
+                airQualityAlertConsumerFactory()
+        );
 
         return factory;
     }
