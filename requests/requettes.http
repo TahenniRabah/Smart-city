@@ -70,3 +70,66 @@ X-API-Key: urbanhub-local-development-key
   "value": 220.5,
   "timestamp": "2026-05-06T14:29:58Z"
 }
+
+
+
+@host = http://localhost:8082
+@apiKey = urbanhub-local-development-key
+
+### Requête 1 (attendu : 202)
+POST {{host}}/api/ingestion/measurements
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "zoneId": "ZFE-1",
+  "stationId": "AIR-STATION-042",
+  "indicator": "NO2",
+  "value": 220.5,
+  "timestamp": "2026-07-27T08:00:00Z"
+}
+
+###
+
+### Requête 2 (attendu : 202)
+POST {{host}}/api/ingestion/measurements
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "zoneId": "ZFE-1",
+  "stationId": "AIR-STATION-042",
+  "indicator": "NO2",
+  "value": 220.5,
+  "timestamp": "2026-07-27T08:00:00Z"
+}
+
+###
+
+### Requête 3 (attendu : 202)
+POST {{host}}/api/ingestion/measurements
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "zoneId": "ZFE-1",
+  "stationId": "AIR-STATION-042",
+  "indicator": "NO2",
+  "value": 220.5,
+  "timestamp": "2026-07-27T08:00:00Z"
+}
+
+###
+
+### Requête 4 (attendu : 429 Too Many Requests)
+POST {{host}}/api/ingestion/measurements
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "zoneId": "ZFE-1",
+  "stationId": "AIR-STATION-042",
+  "indicator": "NO2",
+  "value": 220.5,
+  "timestamp": "2026-07-27T08:00:00Z"
+}
