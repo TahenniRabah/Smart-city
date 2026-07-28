@@ -1,20 +1,14 @@
-Java / Spring Boot
+## Profils Spring Boot
 
-Maven
+Chaque microservice utilise deux niveaux de configuration :
 
-Kafka
+* `application.yml` pour la configuration commune et locale ;
+* `application-prod.yml` pour l’exécution conteneurisée.
 
-Swagger / OpenAPI
+Le profil est activé dans Docker Compose :
 
-Postman
-
-JUnit 5
-
-Mockito
-
-GitHub Actions
-
-MkDocs
-
-
+```yaml
+environment:
+  SPRING\_PROFILES\_ACTIVE: prod
+  KAFKA\_BOOTSTRAP\_SERVERS: kafka:9092
 
