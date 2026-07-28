@@ -5,6 +5,10 @@ spring:
 server:
   port: ${SERVER_PORT:8082}
 
+urbanhub:
+  security:
+    ingestion-api-key: ${INGESTION_API_KEY}
+
 management:
   endpoints:
     web:

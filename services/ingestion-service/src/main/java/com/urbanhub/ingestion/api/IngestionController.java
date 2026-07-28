@@ -4,6 +4,7 @@ import com.urbanhub.ingestion.application.IngestionResult;
 import com.urbanhub.ingestion.application.MeasurementIngestionService;
 import com.urbanhub.ingestion.application.RawMeasurementCommand;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ public class IngestionController {
         this.ingestionService = ingestionService;
     }
 
+    @SecurityRequirement(name = "sensorApiKey")
     @PostMapping("/measurements")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @Operation(

@@ -25,3 +25,48 @@ Content-Type: application/json
   "value": -1,
   "timestamp": null
 }
+
+
+@host = http://localhost:8082
+
+### Sans clé API (attendu : 401 Unauthorized)
+POST {{host}}/api/ingestion/measurements
+Content-Type: application/json
+
+{
+  "zoneId": "ZFE-1",
+  "stationId": "AIR-STATION-042",
+  "indicator": "NO2",
+  "value": 220.5,
+  "timestamp": "2026-05-06T14:29:58Z"
+}
+
+###
+
+### Avec une clé API incorrecte (attendu : 401 Unauthorized)
+POST {{host}}/api/ingestion/measurements
+Content-Type: application/json
+X-API-Key: invalid
+
+{
+  "zoneId": "ZFE-1",
+  "stationId": "AIR-STATION-042",
+  "indicator": "NO2",
+  "value": 220.5,
+  "timestamp": "2026-05-06T14:29:58Z"
+}
+
+###
+
+### Avec une clé API valide (attendu : 202 Accepted)
+POST {{host}}/api/ingestion/measurements
+Content-Type: application/json
+X-API-Key: urbanhub-local-development-key
+
+{
+  "zoneId": "ZFE-1",
+  "stationId": "AIR-STATION-042",
+  "indicator": "NO2",
+  "value": 220.5,
+  "timestamp": "2026-05-06T14:29:58Z"
+}

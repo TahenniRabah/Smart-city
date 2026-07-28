@@ -1,18 +1,42 @@
 package com.urbanhub.ingestion.api;
 
 import com.urbanhub.ingestion.application.MeasurementIngestionService;
+import com.urbanhub.ingestion.security.ApiKeyAuthenticationEntryPoint;
+import com.urbanhub.ingestion.security.ApiKeyAuthenticationFilter;
+import com.urbanhub.ingestion.security.SecurityConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(IngestionController.class)
+@Import({
+        SecurityConfig.class,
+        ApiKeyAuthenticationFilter.class,
+        ApiKeyAuthenticationEntryPoint.class,
+        GlobalExceptionHandler.class
+})
+@TestPropertySource(properties = {
+        "urbanhub.security.ingestion-api-key=test-api-key"
+})
 class IngestionControllerValidationTest {
+
+    private static final String ENDPOINT =
+            "/api/ingestion/measurements";
+
+    private static final String API_KEY_HEADER =
+            "X-API-Key";
+
+    private static final String VALID_API_KEY =
+            "test-api-key";
 
     @Autowired
     private MockMvc mockMvc;
@@ -27,15 +51,17 @@ class IngestionControllerValidationTest {
                   "stationId": "AIR-STATION-042",
                   "indicator": "NO2",
                   "value": 220.5,
-                  "timestamp": "2026-07-27T18:00:00Z"
+                  "timestamp": "2026-07-27T08:00:00Z"
                 }
                 """;
 
-        mockMvc.perform(post("/api/ingestion/measurements")
+        mockMvc.perform(post(ENDPOINT)
+                        .header(API_KEY_HEADER, VALID_API_KEY)
                         .contentType("application/json")
                         .content(request))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.error").value("VALIDATION_ERROR"))
+                .andExpect(jsonPath("$.error")
+                        .value("VALIDATION_ERROR"))
                 .andExpect(jsonPath("$.fieldErrors.zoneId")
                         .value("zoneId is required"));
 
@@ -43,61 +69,74 @@ class IngestionControllerValidationTest {
     }
 
     @Test
-    void shouldRejectRequestWhenIndicatorIsUnsupported() throws Exception {
+    void shouldRejectRequestWhenIndicatorIsUnsupported()
+            throws Exception {
+
         String request = """
                 {
                   "zoneId": "ZFE-1",
                   "stationId": "AIR-STATION-042",
                   "indicator": "UNKNOWN",
                   "value": 220.5,
-                  "timestamp": "2026-07-27T18:00:00Z"
+                  "timestamp": "2026-07-27T08:00:00Z"
                 }
                 """;
 
-        mockMvc.perform(post("/api/ingestion/measurements")
+        mockMvc.perform(post(ENDPOINT)
+                        .header(API_KEY_HEADER, VALID_API_KEY)
                         .contentType("application/json")
                         .content(request))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.fieldErrors.indicator")
-                        .value("indicator must be one of: NO2, PM10, PM25"));
+                        .value(
+                                "indicator must be one of: NO2, PM10, PM25"
+                        ));
 
         verifyNoInteractions(ingestionService);
     }
 
     @Test
-    void shouldRejectRequestWhenValueIsNegative() throws Exception {
+    void shouldRejectRequestWhenValueIsNegative()
+            throws Exception {
+
         String request = """
                 {
                   "zoneId": "ZFE-1",
                   "stationId": "AIR-STATION-042",
                   "indicator": "NO2",
                   "value": -1,
-                  "timestamp": "2026-07-27T18:00:00Z"
+                  "timestamp": "2026-07-27T08:00:00Z"
                 }
                 """;
 
-        mockMvc.perform(post("/api/ingestion/measurements")
+        mockMvc.perform(post(ENDPOINT)
+                        .header(API_KEY_HEADER, VALID_API_KEY)
                         .contentType("application/json")
                         .content(request))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.fieldErrors.value")
-                        .value("value must be greater than or equal to 0"));
+                        .value(
+                                "value must be greater than or equal to 0"
+                        ));
 
         verifyNoInteractions(ingestionService);
     }
 
     @Test
-    void shouldRejectRequestWhenValueIsMissing() throws Exception {
+    void shouldRejectRequestWhenValueIsMissing()
+            throws Exception {
+
         String request = """
                 {
                   "zoneId": "ZFE-1",
                   "stationId": "AIR-STATION-042",
                   "indicator": "NO2",
-                  "timestamp": "2026-07-27T18:00:00Z"
+                  "timestamp": "2026-07-27T08:00:00Z"
                 }
                 """;
 
-        mockMvc.perform(post("/api/ingestion/measurements")
+        mockMvc.perform(post(ENDPOINT)
+                        .header(API_KEY_HEADER, VALID_API_KEY)
                         .contentType("application/json")
                         .content(request))
                 .andExpect(status().isBadRequest())
@@ -108,7 +147,9 @@ class IngestionControllerValidationTest {
     }
 
     @Test
-    void shouldRejectRequestWhenTimestampIsMissing() throws Exception {
+    void shouldRejectRequestWhenTimestampIsMissing()
+            throws Exception {
+
         String request = """
                 {
                   "zoneId": "ZFE-1",
@@ -118,7 +159,8 @@ class IngestionControllerValidationTest {
                 }
                 """;
 
-        mockMvc.perform(post("/api/ingestion/measurements")
+        mockMvc.perform(post(ENDPOINT)
+                        .header(API_KEY_HEADER, VALID_API_KEY)
                         .contentType("application/json")
                         .content(request))
                 .andExpect(status().isBadRequest())

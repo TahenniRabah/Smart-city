@@ -1,0 +1,56 @@
+# Secrets et variables d'environnement
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+.venv
+.env.example
+
+
+# Maven / Java
+**/target/
+*.class
+*.jar
+*.war
+*.exec
+
+# Bases locales H2
+**/data/
+*.mv.db
+*.trace.db
+*.h2.db
+
+# Images uploadées localement
+**/uploads/
+
+# Frontend
+**/node_modules/
+**/dist/
+**/.vite/
+
+# Logs
+**/logs/
+*.log
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# Système
+.DS_Store
+Thumbs.db
+
+# Fichiers temporaires
+*.tmp
+*.swp
+*.bak
+
+# Couverture et rapports de tests
+**/coverage/
+**/target/site/
