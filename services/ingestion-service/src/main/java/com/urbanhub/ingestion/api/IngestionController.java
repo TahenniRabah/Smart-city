@@ -1,21 +1,27 @@
 package com.urbanhub.ingestion.api;
 
-
 import com.urbanhub.ingestion.application.IngestionResult;
 import com.urbanhub.ingestion.application.MeasurementIngestionService;
 import com.urbanhub.ingestion.application.RawMeasurementCommand;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 @RestController
- 
-@Tag(name = "Ingestion", description = "Réception des mesures brutes IoT")
+@RequestMapping("/api/ingestion")
+@Tag(
+        name = "Ingestion",
+        description = "Réception des mesures brutes IoT"
+)
 public class IngestionController {
 
     private final MeasurementIngestionService ingestionService;
 
-    public IngestionController(MeasurementIngestionService ingestionService) {
+    public IngestionController(
+            MeasurementIngestionService ingestionService
+    ) {
         this.ingestionService = ingestionService;
     }
 
@@ -23,9 +29,15 @@ public class IngestionController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     @Operation(
             summary = "Recevoir une mesure brute",
-            description = "Reçoit une mesure brute depuis une passerelle IoT, génère un correlationId et publie un événement MeasurementReceived."
+            description = """
+                    Reçoit une mesure brute depuis une passerelle IoT,
+                    génère un correlationId et publie un événement
+                    MeasurementReceived.
+                    """
     )
-    public MeasurementIngestionResponse ingest(@RequestBody MeasurementIngestionRequest request) {
+    public MeasurementIngestionResponse ingest(
+            @Valid @RequestBody MeasurementIngestionRequest request
+    ) {
         RawMeasurementCommand command = new RawMeasurementCommand(
                 request.zoneId(),
                 request.stationId(),

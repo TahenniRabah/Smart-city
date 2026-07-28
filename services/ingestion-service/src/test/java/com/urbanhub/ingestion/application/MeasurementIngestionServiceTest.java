@@ -71,5 +71,74 @@ public class MeasurementIngestionServiceTest {
         assertEquals("zoneId is required", exception.getMessage());
         verifyNoInteractions(publisher);
     }
+
+    @Test
+    void shouldRejectUnsupportedIndicator() {
+        RawMeasurementCommand command = new RawMeasurementCommand(
+                "ZFE-1",
+                "AIR-STATION-042",
+                "UNKNOWN",
+                220.5,
+                Instant.parse("2026-05-06T14:29:58Z")
+        );
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> service.ingest(command)
+        );
+
+        assertEquals(
+                "indicator is not supported",
+                exception.getMessage()
+        );
+
+        verifyNoInteractions(publisher);
+    }
+
+    @Test
+    void shouldRejectNegativeValue() {
+        RawMeasurementCommand command = new RawMeasurementCommand(
+                "ZFE-1",
+                "AIR-STATION-042",
+                "NO2",
+                -1.0,
+                Instant.parse("2026-05-06T14:29:58Z")
+        );
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> service.ingest(command)
+        );
+
+        assertEquals(
+                "value must be between 0 and 5000",
+                exception.getMessage()
+        );
+
+        verifyNoInteractions(publisher);
+    }
+
+    @Test
+    void shouldRejectMissingTimestamp() {
+        RawMeasurementCommand command = new RawMeasurementCommand(
+                "ZFE-1",
+                "AIR-STATION-042",
+                "NO2",
+                220.5,
+                null
+        );
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> service.ingest(command)
+        );
+
+        assertEquals(
+                "timestamp is required",
+                exception.getMessage()
+        );
+
+        verifyNoInteractions(publisher);
+    }
 }
 

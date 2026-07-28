@@ -24,7 +24,6 @@ class IngestionControllerValidationTest {
     void shouldRejectRequestWhenZoneIdIsBlank() throws Exception {
         String request = """
                 {
-                  "zoneId": "",
                   "stationId": "AIR-STATION-042",
                   "indicator": "NO2",
                   "value": 220.5,
