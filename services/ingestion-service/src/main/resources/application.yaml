@@ -12,9 +12,15 @@ urbanhub:
   security:
     ingestion-api-key: ${INGESTION_API_KEY:urbanhub-local-development-key}
 
+    rate-limit:
+      capacity: 100
+      refill-tokens: 100
+      refill-duration-seconds: 60
+
   kafka:
     topics:
       measurements-received: measurements.received
+
 springdoc:
   api-docs:
     path: /v3/api-docs

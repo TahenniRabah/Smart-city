@@ -7,7 +7,10 @@ server:
 
 urbanhub:
   security:
-    ingestion-api-key: ${INGESTION_API_KEY}
+    rate-limit:
+      capacity: ${INGESTION_RATE_LIMIT_CAPACITY:100}
+      refill-tokens: ${INGESTION_RATE_LIMIT_REFILL_TOKENS:100}
+      refill-duration-seconds: ${INGESTION_RATE_LIMIT_DURATION_SECONDS:60}
 
 management:
   endpoints:

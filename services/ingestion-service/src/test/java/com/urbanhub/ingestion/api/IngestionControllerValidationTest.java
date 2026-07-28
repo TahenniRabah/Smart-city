@@ -3,6 +3,7 @@ package com.urbanhub.ingestion.api;
 import com.urbanhub.ingestion.application.MeasurementIngestionService;
 import com.urbanhub.ingestion.security.ApiKeyAuthenticationEntryPoint;
 import com.urbanhub.ingestion.security.ApiKeyAuthenticationFilter;
+import com.urbanhub.ingestion.security.RateLimitFilter;
 import com.urbanhub.ingestion.security.SecurityConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         SecurityConfig.class,
         ApiKeyAuthenticationFilter.class,
         ApiKeyAuthenticationEntryPoint.class,
+        RateLimitFilter.class,
         GlobalExceptionHandler.class
 })
 @TestPropertySource(properties = {
-        "urbanhub.security.ingestion-api-key=test-api-key"
+        "urbanhub.security.ingestion-api-key=test-api-key",
+        "urbanhub.security.rate-limit.capacity=100",
+        "urbanhub.security.rate-limit.refill-tokens=100",
+        "urbanhub.security.rate-limit.refill-duration-seconds=60"
 })
 class IngestionControllerValidationTest {
 

@@ -109,3 +109,17 @@ Le cours demande de représenter les sources externes, processus, stockages et f
 La référence UrbanHub du cours place les capteurs en amont, le broker comme point central, puis l’ingestion, le stockage, les alertes et le dashboard.
 
 Le DFD doit adapter cette référence aux services réellement présents dans l’architecture actuelle.
+
+
+
+## Limite du rate limiting
+
+Le rate limiting actuel est stocké en mémoire dans l’instance de
+`ingestion-service`.
+
+Cette solution est adaptée à la démonstration et au déploiement
+Docker Compose mono-instance.
+
+Dans une architecture multi-instance, les buckets devront être
+stockés dans Redis ou le rate limiting devra être centralisé dans
+une API Gateway.

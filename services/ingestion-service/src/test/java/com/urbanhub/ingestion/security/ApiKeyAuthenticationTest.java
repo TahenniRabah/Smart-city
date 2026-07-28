@@ -21,10 +21,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import({
         SecurityConfig.class,
         ApiKeyAuthenticationFilter.class,
-        ApiKeyAuthenticationEntryPoint.class
+        ApiKeyAuthenticationEntryPoint.class,
+        RateLimitFilter.class
 })
 @TestPropertySource(properties = {
-        "urbanhub.security.ingestion-api-key=test-api-key"
+        "urbanhub.security.ingestion-api-key=test-api-key",
+        "urbanhub.security.rate-limit.capacity=100",
+        "urbanhub.security.rate-limit.refill-tokens=100",
+        "urbanhub.security.rate-limit.refill-duration-seconds=60"
 })
 class ApiKeyAuthenticationTest {
 

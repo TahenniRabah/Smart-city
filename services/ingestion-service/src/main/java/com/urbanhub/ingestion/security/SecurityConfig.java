@@ -12,13 +12,18 @@ public class SecurityConfig {
 
     private final ApiKeyAuthenticationFilter apiKeyAuthenticationFilter;
     private final ApiKeyAuthenticationEntryPoint authenticationEntryPoint;
+    private final RateLimitFilter rateLimitFilter;
+
 
     public SecurityConfig(
             ApiKeyAuthenticationFilter apiKeyAuthenticationFilter,
+            RateLimitFilter rateLimitFilter,
             ApiKeyAuthenticationEntryPoint authenticationEntryPoint
     ) {
         this.apiKeyAuthenticationFilter =
                 apiKeyAuthenticationFilter;
+        this.rateLimitFilter =
+                rateLimitFilter;
         this.authenticationEntryPoint =
                 authenticationEntryPoint;
     }
@@ -60,6 +65,10 @@ public class SecurityConfig {
                 .addFilterBefore(
                         apiKeyAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class
+                )
+                .addFilterAfter(
+                        rateLimitFilter,
+                        ApiKeyAuthenticationFilter.class
                 )
                 .build();
     }
