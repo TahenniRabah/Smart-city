@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="13.9.0">
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\api\ApiErrorResponse.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\api\GlobalExceptionHandler.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\api\IngestionController.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\api\MeasurementIngestionRequest.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\api\MeasurementIngestionResponse.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\application\CorrelationIdGenerator.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\application\IngestionResult.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\application\MeasurementIngestionService.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\application\MeasurementReceivedPublisher.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\application\RawMeasurementCommand.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\application\UuidCorrelationIdGenerator.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\config\KafkaProducerConfig.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\config\OpenApiConfig.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\domain\ActiveSensorState.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\domain\FaultySensorState.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\domain\InactiveSensorState.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\domain\Sensor.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\domain\SensorState.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\events\MeasurementReceivedEvent.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\IngestionServiceApplication.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\messaging\KafkaMeasurementReceivedPublisher.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\security\ApiKeyAuthenticationEntryPoint.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\security\ApiKeyAuthenticationFilter.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\security\ApiKeyAuthenticationToken.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\security\RateLimitFilter.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\main\java\com\urbanhub\ingestion\security\SecurityConfig.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\test\java\com\urbanhub\ingestion\api\IngestionControllerValidationTest.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\test\java\com\urbanhub\ingestion\api\IngestionPerformanceTest.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\test\java\com\urbanhub\ingestion\application\MeasurementIngestionServiceTest.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\test\java\com\urbanhub\ingestion\domain\SensorTest.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\test\java\com\urbanhub\ingestion\IngestionServiceApplicationTests.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\test\java\com\urbanhub\ingestion\security\ApiKeyAuthenticationTest.java">
+</file>
+<file name="C:\Users\rtahenni\OneDrive - Capgemini\Bureau\formations\EADL\fil rouge\Smart city\services\ingestion-service\src\test\java\com\urbanhub\ingestion\security\RateLimitFilterTest.java">
+</file>
+</checkstyle>

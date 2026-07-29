@@ -61,3 +61,11 @@ Thumbs.db
 
 # Accidentally exported test reports
 **/Test Results - *.xml
+
+
+target/
+**/surefire-reports/
+**/jacoco/
+**/spotbugs/
+**/trivy/
+*.log
