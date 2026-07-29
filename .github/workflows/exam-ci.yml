@@ -222,3 +222,140 @@ jobs:
             echo "- SpotBugs report not found" \
                 >> "$GITHUB_STEP_SUMMARY"
             fi
+
+  security:
+    name: DevSecOps security analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs:
+      - quality
+
+    steps:
+      - name: Checkout full repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Prepare security evidence directory
+        shell: bash
+        run: |
+          mkdir -p artifacts/security
+
+      - name: Scan repository secrets with Gitleaks
+        shell: bash
+        run: |
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/repo" \
+            zricethezav/gitleaks:v8.30.1 \
+            detect \
+            --source=/repo \
+            --report-format=sarif \
+            --report-path=/repo/artifacts/security/gitleaks-report.sarif \
+            --redact \
+            --verbose
+
+      - name: Scan Maven dependencies with Trivy
+        shell: bash
+        run: |
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/src" \
+            -v trivy-cache:/root/.cache/trivy \
+            aquasec/trivy:0.72.0 \
+            fs \
+            --scanners vuln \
+            --severity HIGH,CRITICAL \
+            --ignore-unfixed \
+            --exit-code 0 \
+            --format json \
+            --output /src/artifacts/security/trivy-fs-report.json \
+            /src/services/ingestion-service
+
+      - name: Generate Trivy SARIF report
+        shell: bash
+        run: |
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/src" \
+            -v trivy-cache:/root/.cache/trivy \
+            aquasec/trivy:0.72.0 \
+            fs \
+            --scanners vuln \
+            --severity HIGH,CRITICAL \
+            --ignore-unfixed \
+            --exit-code 0 \
+            --format sarif \
+            --output /src/artifacts/security/trivy-fs-report.sarif \
+            /src/services/ingestion-service
+
+      - name: Generate CycloneDX SBOM
+        shell: bash
+        run: |
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/src" \
+            -v trivy-cache:/root/.cache/trivy \
+            aquasec/trivy:0.72.0 \
+            fs \
+            --format cyclonedx \
+            --output /src/artifacts/security/urbanhub-ingestion-sbom.cdx.json \
+            /src/services/ingestion-service
+
+      - name: Verify generated security evidence
+        shell: bash
+        run: |
+          test -f artifacts/security/trivy-fs-report.json
+          test -f artifacts/security/trivy-fs-report.sarif
+          test -f artifacts/security/urbanhub-ingestion-sbom.cdx.json
+
+          echo "Security evidence files generated successfully."
+
+      - name: Summarize security results
+        if: always()
+        shell: bash
+        run: |
+          echo "## DevSecOps security analysis" \
+            >> "$GITHUB_STEP_SUMMARY"
+
+          echo "- Gitleaks: blocking secret detection" \
+            >> "$GITHUB_STEP_SUMMARY"
+
+          echo "- Trivy filesystem: dependency vulnerability baseline" \
+            >> "$GITHUB_STEP_SUMMARY"
+
+          echo "- Trivy severities: HIGH and CRITICAL" \
+            >> "$GITHUB_STEP_SUMMARY"
+
+          echo "- CycloneDX SBOM: generated" \
+            >> "$GITHUB_STEP_SUMMARY"
+
+          echo "- Trivy gate: audit mode during initial qualification" \
+            >> "$GITHUB_STEP_SUMMARY"
+
+          if [ -f artifacts/security/trivy-fs-report.json ]; then
+            VULNERABILITY_COUNT=$(grep -o \
+              '"VulnerabilityID"' \
+              artifacts/security/trivy-fs-report.json \
+              | wc -l)
+
+            echo "- Trivy findings: ${VULNERABILITY_COUNT}" \
+              >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          if [ -f artifacts/security/urbanhub-ingestion-sbom.cdx.json ]; then
+            echo "- SBOM status: available" \
+              >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- SBOM status: missing" \
+              >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload security evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ingestion-security-reports
+          path: |
+            artifacts/security/gitleaks-report.sarif
+            artifacts/security/trivy-fs-report.json
+            artifacts/security/trivy-fs-report.sarif
+            artifacts/security/urbanhub-ingestion-sbom.cdx.json
+          if-no-files-found: warn
+          retention-days: 14
