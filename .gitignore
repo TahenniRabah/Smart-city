@@ -54,3 +54,10 @@ Thumbs.db
 # Couverture et rapports de tests
 **/coverage/
 **/target/site/
+
+
+# Maven build outputs
+**/target/
+
+# Accidentally exported test reports
+**/Test Results - *.xml

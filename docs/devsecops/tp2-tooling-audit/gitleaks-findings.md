@@ -1,34 +1,38 @@
-\# Résultats Gitleaks
+\## GL-01 - Clé générique dans un rapport de test
 
 
 
-\## Résumé
+| Attribut | Valeur |
+
+|---|---|
+
+| Règle | `generic-api-key` |
+
+| Fichier | `Test Results - IngestionControllerValidationTest.xml` |
+
+| Qualification | Faux positif |
+
+| Contexte | Rapport de test généré contenant une valeur réservée aux tests automatisés |
+
+| Secret opérationnel | Non |
+
+| Action corrective | Retrait du rapport généré du dépôt |
+
+| Prévention | Ajout du fichier au `.gitignore` |
+
+| Traitement historique | Fingerprint ajouté à `.gitleaksignore` |
+
+| Risque résiduel | Faible |
 
 
 
-| Indicateur | Valeur |
+La valeur détectée est une donnée fictive utilisée uniquement dans les tests
 
-|---|---:|
-
-| Findings détectés | À compléter |
-
-| Vrais positifs | À compléter |
-
-| Faux positifs | À compléter |
-
-| Secrets révoqués | À compléter |
-
-| Secrets restant à traiter | À compléter |
+automatisés. Elle ne donne accès à aucun environnement UrbanHub.
 
 
 
-\## Qualification
+L’exclusion est limitée au fingerprint historique exact. Les futures détections
 
-
-
-| ID | Règle | Fichier | Ligne | Historique | Qualification | Action | Statut |
-
-|---|---|---|---:|---|---|---|---|
-
-| GL-01 | À compléter | À compléter | 0 | Oui/Non | Vrai/Faux positif | Révocation, suppression ou exclusion justifiée | Ouvert/Fermé |
+de la règle `generic-api-key` restent bloquantes. positif | Révocation, suppression ou exclusion justifiée | Ouvert/Fermé |
 
