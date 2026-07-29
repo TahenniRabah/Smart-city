@@ -195,20 +195,30 @@ jobs:
         if: always()
         shell: bash
         run: |
-          echo "## Code quality analysis" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Checkstyle: executed with blocking gate" \
-            >> "$GITHUB_STEP_SUMMARY"
-          echo "- SpotBugs: executed in audit mode" \
-            >> "$GITHUB_STEP_SUMMARY"
-          echo "- Find Security Bugs: enabled as SpotBugs plugin" \
-            >> "$GITHUB_STEP_SUMMARY"
+            echo "## Code quality analysis" >> "$GITHUB_STEP_SUMMARY"
+            echo "- Checkstyle: executed with blocking gate" >> "$GITHUB_STEP_SUMMARY"
+            echo "- SpotBugs: executed in audit mode" >> "$GITHUB_STEP_SUMMARY"
+            echo "- Find Security Bugs: enabled as SpotBugs plugin" >> "$GITHUB_STEP_SUMMARY"
 
-          CHECKSTYLE_REPORT="target/checkstyle-result.xml"
-          SPOTBUGS_REPORT="target/spotbugsXml.xml"
+            CHECKSTYLE_REPORT="target/checkstyle-result.xml"
+            SPOTBUGS_REPORT="target/spotbugsXml.xml"
 
-          if [ -f "$CHECKSTYLE_REPORT" ]; then
-            CHECKSTYLE_ERRORS=$(grep -c "<error " \
-              "$CHECKSTYLE_REPORT" || true)
+            if [ -f "$CHECKSTYLE_REPORT" ]; then
+            CHECKSTYLE_ERRORS=$(grep -c "<error " "$CHECKSTYLE_REPORT" || true)
 
-            echo "- Checkstyle violations
+            echo "- Checkstyle violations: ${CHECKSTYLE_ERRORS}" \
+                >> "$GITHUB_STEP_SUMMARY"
+            else
+            echo "- Checkstyle report not found" \
+                >> "$GITHUB_STEP_SUMMARY"
+            fi
 
+            if [ -f "$SPOTBUGS_REPORT" ]; then
+            SPOTBUGS_ISSUES=$(grep -c "<BugInstance" "$SPOTBUGS_REPORT" || true)
+
+            echo "- SpotBugs findings: ${SPOTBUGS_ISSUES}" \
+                >> "$GITHUB_STEP_SUMMARY"
+            else
+            echo "- SpotBugs report not found" \
+                >> "$GITHUB_STEP_SUMMARY"
+            fi
