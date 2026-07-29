@@ -331,39 +331,67 @@ jobs:
         if: always()
         shell: bash
         run: |
-          echo "## DevSecOps security analysis" \
-            >> "$GITHUB_STEP_SUMMARY"
+          {
+            echo "## DevSecOps security analysis"
+            echo "- Gitleaks: blocking secret detection"
+            echo "- Trivy filesystem: dependency vulnerability baseline"
+            echo "- Trivy severities: HIGH and CRITICAL"
+            echo "- Trivy gate: audit mode during initial qualification"
+          } >> "$GITHUB_STEP_SUMMARY"
 
-          echo "- Gitleaks: blocking secret detection" \
-            >> "$GITHUB_STEP_SUMMARY"
+          TRIVY_REPORT="artifacts/security/trivy-fs-report.json"
+          SBOM_REPORT="artifacts/security/urbanhub-ingestion-sbom.cdx.json"
+          GITLEAKS_REPORT="artifacts/security/gitleaks-report.sarif"
 
-          echo "- Trivy filesystem: dependency vulnerability baseline" \
-            >> "$GITHUB_STEP_SUMMARY"
+          if [ -f "$TRIVY_REPORT" ]; then
+            VULNERABILITY_COUNT=$(jq \
+              '[.Results[]?.Vulnerabilities[]?] | length' \
+              "$TRIVY_REPORT")
 
-          echo "- Trivy severities: HIGH and CRITICAL" \
-            >> "$GITHUB_STEP_SUMMARY"
+            CRITICAL_COUNT=$(jq \
+              '[.Results[]?.Vulnerabilities[]? |
+                select(.Severity == "CRITICAL")] | length' \
+              "$TRIVY_REPORT")
 
-          echo "- CycloneDX SBOM: generated" \
-            >> "$GITHUB_STEP_SUMMARY"
+            HIGH_COUNT=$(jq \
+              '[.Results[]?.Vulnerabilities[]? |
+                select(.Severity == "HIGH")] | length' \
+              "$TRIVY_REPORT")
 
-          echo "- Trivy gate: audit mode during initial qualification" \
-            >> "$GITHUB_STEP_SUMMARY"
-
-          if [ -f artifacts/security/trivy-fs-report.json ]; then
-            VULNERABILITY_COUNT=$(grep -o \
-              '"VulnerabilityID"' \
-              artifacts/security/trivy-fs-report.json \
-              | wc -l)
-
-            echo "- Trivy findings: ${VULNERABILITY_COUNT}" \
+            {
+              echo "- Trivy report: available"
+              echo "- Trivy findings: ${VULNERABILITY_COUNT}"
+              echo "- CRITICAL findings: ${CRITICAL_COUNT}"
+              echo "- HIGH findings: ${HIGH_COUNT}"
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- Trivy report: missing" \
               >> "$GITHUB_STEP_SUMMARY"
           fi
 
-          if [ -f artifacts/security/urbanhub-ingestion-sbom.cdx.json ]; then
-            echo "- SBOM status: available" \
+          if [ -f "$SBOM_REPORT" ]; then
+            COMPONENT_COUNT=$(jq \
+              '.components // [] | length' \
+              "$SBOM_REPORT")
+
+            {
+              echo "- CycloneDX SBOM: available"
+              echo "- SBOM components: ${COMPONENT_COUNT}"
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- CycloneDX SBOM: missing" \
+              >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          if [ -f "$GITLEAKS_REPORT" ]; then
+            GITLEAKS_COUNT=$(jq \
+              '[.runs[]?.results[]?] | length' \
+              "$GITLEAKS_REPORT")
+
+            echo "- Gitleaks findings: ${GITLEAKS_COUNT}" \
               >> "$GITHUB_STEP_SUMMARY"
           else
-            echo "- SBOM status: missing" \
+            echo "- Gitleaks findings: 0, no report generated" \
               >> "$GITHUB_STEP_SUMMARY"
           fi
 
