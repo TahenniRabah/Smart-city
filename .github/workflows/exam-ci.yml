@@ -146,3 +146,69 @@ jobs:
             services/ingestion-service/target/site/jacoco/
           if-no-files-found: warn
           retention-days: 14
+  quality:
+    name: Code quality analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    needs:
+      - test
+
+    defaults:
+      run:
+        working-directory: ${{ env.SERVICE_DIRECTORY }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: maven
+          cache-dependency-path: |
+            services/ingestion-service/pom.xml
+
+      - name: Run Checkstyle
+        run: |
+          mvn \
+            --batch-mode \
+            --no-transfer-progress \
+            checkstyle:check
+
+      - name: Compile application for SpotBugs
+        run: |
+          mvn \
+            --batch-mode \
+            --no-transfer-progress \
+            compile
+
+      - name: Run SpotBugs and Find Security Bugs
+        run: |
+          mvn \
+            --batch-mode \
+            --no-transfer-progress \
+            spotbugs:spotbugs
+
+      - name: Summarize quality analysis
+        if: always()
+        shell: bash
+        run: |
+          echo "## Code quality analysis" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Checkstyle: executed with blocking gate" \
+            >> "$GITHUB_STEP_SUMMARY"
+          echo "- SpotBugs: executed in audit mode" \
+            >> "$GITHUB_STEP_SUMMARY"
+          echo "- Find Security Bugs: enabled as SpotBugs plugin" \
+            >> "$GITHUB_STEP_SUMMARY"
+
+          CHECKSTYLE_REPORT="target/checkstyle-result.xml"
+          SPOTBUGS_REPORT="target/spotbugsXml.xml"
+
+          if [ -f "$CHECKSTYLE_REPORT" ]; then
+            CHECKSTYLE_ERRORS=$(grep -c "<error " \
+              "$CHECKSTYLE_REPORT" || true)
+
+            echo "- Checkstyle violations
+
