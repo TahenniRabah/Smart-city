@@ -379,3 +379,221 @@ jobs:
             artifacts/security/urbanhub-ingestion-sbom.cdx.json
           if-no-files-found: warn
           retention-days: 14
+    
+
+  build:
+    name: Build immutable Docker image
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs:
+      - security
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build versioned Docker image
+        run: |
+          docker build \
+            --tag "urbanhub-ingestion:${GITHUB_SHA}" \
+            services/ingestion-service
+
+      - name: Inspect built image
+        run: |
+          docker image inspect \
+            "urbanhub-ingestion:${GITHUB_SHA}" \
+            --format \
+            'Image={{.RepoTags}} Id={{.Id}} Size={{.Size}}'
+
+      - name: Save Docker image metadata
+        run: |
+          mkdir -p artifacts/build
+
+          docker image inspect \
+            "urbanhub-ingestion:${GITHUB_SHA}" \
+            > artifacts/build/docker-image-inspect.json
+
+          {
+            echo "Image: urbanhub-ingestion:${GITHUB_SHA}"
+            echo "Git SHA: ${GITHUB_SHA}"
+            docker image ls "urbanhub-ingestion:${GITHUB_SHA}"
+          } > artifacts/build/docker-build.log
+
+      - name: Summarize Docker build
+        run: |
+          echo "## Docker build" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Image: \`urbanhub-ingestion:${GITHUB_SHA}\`" \
+            >> "$GITHUB_STEP_SUMMARY"
+          echo "- Versioning: immutable Git commit SHA" \
+            >> "$GITHUB_STEP_SUMMARY"
+          echo "- Dockerfile: multi-stage Java 25 build" \
+            >> "$GITHUB_STEP_SUMMARY"
+          echo "- Runtime user: non-root" \
+            >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload build evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: ingestion-build-evidence
+          path: artifacts/build/
+          if-no-files-found: error
+          retention-days: 14
+
+
+  deploy:
+    name: Local deployment and smoke tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    needs:
+      - build
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate ephemeral CI API key
+        shell: bash
+        run: |
+          API_KEY=$(openssl rand -hex 32)
+          echo "::add-mask::$API_KEY"
+          echo "INGESTION_API_KEY=$API_KEY" >> "$GITHUB_ENV"
+
+      - name: Start Kafka and ingestion service
+        shell: bash
+        run: |
+          docker compose up \
+            --build \
+            --detach \
+            kafka \
+            ingestion-service
+
+      - name: Wait for ingestion readiness
+        shell: bash
+        run: |
+          mkdir -p artifacts/deploy
+
+          READY=false
+
+          for attempt in $(seq 1 30); do
+            STATUS=$(curl \
+              --silent \
+              --output /dev/null \
+              --write-out "%{http_code}" \
+              http://localhost:8082/actuator/health/readiness \
+              || true)
+
+            echo "Attempt ${attempt}: HTTP ${STATUS}"
+
+            if [ "$STATUS" = "200" ]; then
+              READY=true
+              break
+            fi
+
+            sleep 5
+          done
+
+          if [ "$READY" != "true" ]; then
+            docker compose ps
+            docker compose logs ingestion-service
+            exit 1
+          fi
+
+          echo "Readiness smoke test: PASS" \
+            | tee artifacts/deploy/readiness-test.txt
+
+      - name: Verify unauthenticated request is rejected
+        shell: bash
+        run: |
+          STATUS=$(curl \
+            --silent \
+            --output artifacts/deploy/unauthorized-response.json \
+            --write-out "%{http_code}" \
+            --request POST \
+            http://localhost:8082/api/ingestion/measurements \
+            --header "Content-Type: application/json" \
+            --data '{
+              "zoneId": "ZFE-1",
+              "stationId": "AIR-STATION-042",
+              "indicator": "NO2",
+              "value": 220.5,
+              "timestamp": "2026-07-27T08:00:00Z"
+            }')
+
+          echo "Unauthenticated request: HTTP ${STATUS}" \
+            | tee artifacts/deploy/unauthorized-test.txt
+
+          test "$STATUS" = "401"
+
+      - name: Verify authenticated ingestion request
+        shell: bash
+        run: |
+          STATUS=$(curl \
+            --silent \
+            --output artifacts/deploy/accepted-response.json \
+            --write-out "%{http_code}" \
+            --request POST \
+            http://localhost:8082/api/ingestion/measurements \
+            --header "Content-Type: application/json" \
+            --header "X-API-Key: ${INGESTION_API_KEY}" \
+            --data '{
+              "zoneId": "ZFE-1",
+              "stationId": "AIR-STATION-042",
+              "indicator": "NO2",
+              "value": 220.5,
+              "timestamp": "2026-07-27T08:00:00Z"
+            }')
+
+          echo "Authenticated request: HTTP ${STATUS}" \
+            | tee artifacts/deploy/authenticated-test.txt
+
+          test "$STATUS" = "202"
+
+      - name: Save deployment state and logs
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p artifacts/deploy
+
+          docker compose ps \
+            > artifacts/deploy/docker-compose-ps.txt
+
+          docker compose logs \
+            --no-color \
+            ingestion-service \
+            > artifacts/deploy/ingestion-service.log 2>&1 || true
+
+          docker compose logs \
+            --no-color \
+            kafka \
+            > artifacts/deploy/kafka.log 2>&1 || true
+
+      - name: Summarize smoke tests
+        if: success()
+        shell: bash
+        run: |
+          echo "## Local deployment and smoke tests" \
+            >> "$GITHUB_STEP_SUMMARY"
+          echo "- Readiness endpoint: PASS" \
+            >> "$GITHUB_STEP_SUMMARY"
+          echo "- Request without API key: HTTP 401, PASS" \
+            >> "$GITHUB_STEP_SUMMARY"
+          echo "- Request with valid API key: HTTP 202, PASS" \
+            >> "$GITHUB_STEP_SUMMARY"
+          echo "- Deployment target: local Docker Compose" \
+            >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload deployment evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ingestion-deployment-evidence
+          path: artifacts/deploy/
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Stop local deployment
+        if: always()
+        run: |
+          docker compose down \
+            --volumes \
+            --remove-orphans
