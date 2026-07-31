@@ -1,0 +1,14 @@
+Test 1 - API key absente
+Expected: 401
+Observed: 401
+Result: PASS
+
+Test 2 - API key invalide
+Expected: 401
+Observed: 401
+Result: PASS
+
+Test 3 - API key valide
+Expected: 202
+Observed: 202
+Result: PASS

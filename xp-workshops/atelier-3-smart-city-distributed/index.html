@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="UrbanHub Team">
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Atelier 3 — Smart City distribuée - UrbanHub Smart City</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">UrbanHub Smart City</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Accueil</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Clean Code</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../clean-code/clean-code-examples/" class="dropdown-item">SOLID, DRY, KISS</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tests</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tests/testing-strategy/" class="dropdown-item">Stratégie de tests</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design Patterns</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../design-patterns/sensor-state-pattern/" class="dropdown-item">Sensor State Pattern</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Outils</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tools/tools-used/" class="dropdown-item">Outils utilisés</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Communication</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../communication/technical-vs-functional/" class="dropdown-item">Technique vs fonctionnelle</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Conventions</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../conventions/conventional-commits/" class="dropdown-item">Conventional Commits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Contrats</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../contracts/" class="dropdown-item">Vue d’ensemble</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Événements</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../contracts/events/air-quality-alert-detected/" class="dropdown-item">AirQualityAlertDetected</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-received/" class="dropdown-item">MeasurementReceived</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-validated/" class="dropdown-item">MeasurementValidated</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-rejected/" class="dropdown-item">MeasurementRejected</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Ateliers XP</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../atelier-2-air-quality/" class="dropdown-item">Atelier 2 — Air Quality</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Atelier 3 — Smart City distribuée</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Architecture</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../architecture/sequence-flow/" class="dropdown-item">Flux événementiel</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../atelier-2-air-quality/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../architecture/sequence-flow/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#atelier-3-adapter-xp-a-la-smart-city-distribuee" class="nav-link">Atelier 3 — Adapter XP à la Smart City distribuée</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-contexte" class="nav-link">1. Contexte</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-interaction-critique-retenue" class="nav-link">2. Interaction critique retenue</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-vue-densemble-de-larchitecture-de-latelier" class="nav-link">3. Vue d’ensemble de l’architecture de l’atelier</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-etat-dimplementation" class="nav-link">4. État d’implémentation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-api-exposee-par-air-quality-service" class="nav-link">5. API exposée par air-quality-service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-regles-metier-de-calcul-des-seuils" class="nav-link">6. Règles métier de calcul des seuils</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-contrat-devenement" class="nav-link">7. Contrat d’événement</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-exemple-devenement-publie" class="nav-link">8. Exemple d’événement publié</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-champs-obligatoires" class="nav-link">9. Champs obligatoires</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#10-regles-de-compatibilite-du-contrat" class="nav-link">10. Règles de compatibilité du contrat</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#11-tests-dacceptation" class="nav-link">11. Tests d’acceptation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#12-demarche-tdd-sur-alerting-service" class="nav-link">12. Démarche TDD sur alerting-service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#13-boucle-tdd-1-notification-csu-pour-alerte-critique" class="nav-link">13. Boucle TDD 1 — Notification CSU pour alerte critique</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#14-boucle-tdd-2-idempotence-par-eventid" class="nav-link">14. Boucle TDD 2 — Idempotence par eventId</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#15-test-complementaire-alerte-warning" class="nav-link">15. Test complémentaire — Alerte WARNING</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#16-implementation-technique-du-consommateur-kafka" class="nav-link">16. Implémentation technique du consommateur Kafka</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#17-configuration-kafka-consumer" class="nav-link">17. Configuration Kafka consumer</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#18-mesures-de-robustesse" class="nav-link">18. Mesures de robustesse</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#19-schema-de-robustesse" class="nav-link">19. Schéma de robustesse</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#20-observabilite-minimale" class="nav-link">20. Observabilité minimale</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#21-strategie-de-small-releases" class="nav-link">21. Stratégie de small releases</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#22-tests-realises-manuellement" class="nav-link">22. Tests réalisés manuellement</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#23-diagnostic-en-cas-de-non-consommation-kafka" class="nav-link">23. Diagnostic en cas de non-consommation Kafka</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#24-cicd-minimale" class="nav-link">24. CI/CD minimale</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#25-retrospective-xp" class="nav-link">25. Rétrospective XP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#26-preuves-a-joindre-au-rendu" class="nav-link">26. Preuves à joindre au rendu</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#27-conclusion" class="nav-link">27. Conclusion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="atelier-3-adapter-xp-a-la-smart-city-distribuee">Atelier 3 — Adapter XP à la Smart City distribuée</h1>
+<h2 id="1-contexte">1. Contexte</h2>
+<p>Dans le cadre du projet <strong>Smart City / UrbanHub</strong>, l’architecture évolue vers une approche <strong>multi-services</strong> avec des interactions asynchrones et des API.</p>
+<p>L’objectif de cet atelier est d’adapter les pratiques XP à un contexte distribué en sécurisant une interaction critique entre microservices.</p>
+<p>L’atelier couvre :</p>
+<ul>
+<li>la cartographie d’une interaction critique ;</li>
+<li>la définition d’un contrat d’événement ;</li>
+<li>l’écriture de tests d’acceptation ;</li>
+<li>l’application d’une démarche TDD sur le microservice consommateur ;</li>
+<li>la mise en place de mesures de robustesse ;</li>
+<li>l’observabilité minimale ;</li>
+<li>une stratégie de small releases.</li>
+</ul>
+<hr />
+<h2 id="2-interaction-critique-retenue">2. Interaction critique retenue</h2>
+<p>L’interaction critique choisie est :</p>
+<pre><code class="language-text">air-quality-service
+→ Kafka topic: air-quality.alert.detected
+→ alerting-service
+</code></pre>
+<h3 id="justification">Justification</h3>
+<p>Cette interaction est critique car elle permet de transmettre une alerte de pollution depuis le microservice de qualité de l’air vers un service chargé de préparer les notifications.</p>
+<p>Elle répond à plusieurs enjeux Smart City :</p>
+<ul>
+<li>détecter rapidement un dépassement de seuil de pollution ;</li>
+<li>transmettre l’information de manière asynchrone ;</li>
+<li>éviter les couplages forts entre microservices ;</li>
+<li>préparer la notification du CSU ou des citoyens ;</li>
+<li>assurer la traçabilité avec <code>eventId</code> et <code>correlationId</code> ;</li>
+<li>rendre l’intégration robuste avec idempotence, retry et DLQ.</li>
+</ul>
+<hr />
+<h2 id="3-vue-densemble-de-larchitecture-de-latelier">3. Vue d’ensemble de l’architecture de l’atelier</h2>
+<pre><code class="language-text">┌─────────────────────────┐
+│ Client / Test curl       │
+└────────────┬────────────┘
+             │ POST /api/air-quality/measurements
+             v
+┌─────────────────────────┐
+│ air-quality-service      │
+│ - reçoit la mesure       │
+│ - calcule le seuil       │
+│ - publie un événement    │
+└────────────┬────────────┘
+             │ Kafka publish
+             │ key = zoneId
+             v
+┌─────────────────────────────────────┐
+│ Kafka topic                          │
+│ air-quality.alert.detected           │
+└────────────┬────────────────────────┘
+             │ Kafka consume
+             v
+┌─────────────────────────┐
+│ alerting-service         │
+│ - consomme l’événement   │
+│ - vérifie l’idempotence  │
+│ - prépare notification   │
+└─────────────────────────┘
+</code></pre>
+<hr />
+<h2 id="4-etat-dimplementation">4. État d’implémentation</h2>
+<h3 id="41-partie-producteur-air-quality-service">4.1 Partie producteur — <code>air-quality-service</code></h3>
+<p>La partie producteur est implémentée.</p>
+<p>Flux validé :</p>
+<pre><code class="language-text">API REST
+→ calcul du niveau d’alerte
+→ publication Kafka
+→ événement visible dans le topic air-quality.alert.detected
+</code></pre>
+<p>Éléments implémentés :</p>
+<pre><code class="language-text">AirQualityAlertDetectedEvent
+AirQualityAlertProducer
+AirQualityAnalysisService
+AirQualityController
+KafkaProducerConfig
+</code></pre>
+<h3 id="42-partie-consommateur-alerting-service">4.2 Partie consommateur — <code>alerting-service</code></h3>
+<p>La partie consommateur est réalisée selon une démarche TDD.</p>
+<p>Le principe retenu est :</p>
+<pre><code class="language-text">Kafka Listener = adaptateur technique mince
+AlertingService = logique métier testée en TDD
+</code></pre>
+<p>Cela permet de tester la logique métier sans dépendre de Kafka.</p>
+<hr />
+<h2 id="5-api-exposee-par-air-quality-service">5. API exposée par <code>air-quality-service</code></h2>
+<h3 id="endpoint">Endpoint</h3>
+<pre><code class="language-http">POST /api/air-quality/measurements
+</code></pre>
+<h3 id="exemple-de-requete-critique">Exemple de requête critique</h3>
+<pre><code class="language-json">{
+  &quot;zoneId&quot;: &quot;ZFE-1&quot;,
+  &quot;stationId&quot;: &quot;AIR-STATION-042&quot;,
+  &quot;pollutant&quot;: &quot;NO2&quot;,
+  &quot;value&quot;: 220.5
+}
+</code></pre>
+<h3 id="exemple-de-reponse">Exemple de réponse</h3>
+<pre><code class="language-json">{
+  &quot;alertLevel&quot;: &quot;CRITICAL&quot;
+}
+</code></pre>
+<hr />
+<h2 id="6-regles-metier-de-calcul-des-seuils">6. Règles métier de calcul des seuils</h2>
+<h3 id="no2">NO2</h3>
+<pre><code class="language-text">value &lt; 100              → NORMAL
+100 &lt;= value &lt; 200       → WARNING
+value &gt;= 200             → CRITICAL
+</code></pre>
+<h3 id="pm10">PM10</h3>
+<pre><code class="language-text">value &lt; 50               → NORMAL
+50 &lt;= value &lt; 80         → WARNING
+value &gt;= 80              → CRITICAL
+</code></pre>
+<h3 id="regle-de-publication">Règle de publication</h3>
+<p>Un événement Kafka est publié uniquement si le niveau calculé est :</p>
+<pre><code class="language-text">WARNING
+CRITICAL
+</code></pre>
+<p>Aucun événement n’est publié si le niveau est :</p>
+<pre><code class="language-text">NORMAL
+</code></pre>
+<hr />
+<h2 id="7-contrat-devenement">7. Contrat d’événement</h2>
+<h3 id="nom-de-levenement">Nom de l’événement</h3>
+<pre><code class="language-text">AirQualityAlertDetected
+</code></pre>
+<h3 id="topic-kafka">Topic Kafka</h3>
+<pre><code class="language-text">air-quality.alert.detected
+</code></pre>
+<h3 id="producteur">Producteur</h3>
+<pre><code class="language-text">air-quality-service
+</code></pre>
+<h3 id="consommateur">Consommateur</h3>
+<pre><code class="language-text">alerting-service
+</code></pre>
+<h3 id="cle-kafka">Clé Kafka</h3>
+<pre><code class="language-text">zoneId
+</code></pre>
+<p>Le choix de <code>zoneId</code> permet de conserver une cohérence de traitement par zone urbaine et facilite le partitionnement des événements.</p>
+<hr />
+<h2 id="8-exemple-devenement-publie">8. Exemple d’événement publié</h2>
+<pre><code class="language-json">{
+  &quot;eventId&quot;: &quot;7d7f2af9-5a71-44d8-88d7-f3c8b2c58c11&quot;,
+  &quot;eventType&quot;: &quot;AirQualityAlertDetected&quot;,
+  &quot;eventVersion&quot;: &quot;1.0&quot;,
+  &quot;occurredAt&quot;: &quot;2026-05-06T14:30:00Z&quot;,
+  &quot;correlationId&quot;: &quot;29f5ff30-8a1a-4470-8d73-d7c8f09a92f1&quot;,
+  &quot;source&quot;: &quot;air-quality-service&quot;,
+  &quot;zoneId&quot;: &quot;ZFE-1&quot;,
+  &quot;stationId&quot;: &quot;AIR-STATION-042&quot;,
+  &quot;pollutant&quot;: &quot;NO2&quot;,
+  &quot;measuredValue&quot;: 220.5,
+  &quot;unit&quot;: &quot;µg/m3&quot;,
+  &quot;alertLevel&quot;: &quot;CRITICAL&quot;,
+  &quot;threshold&quot;: 200.0
+}
+</code></pre>
+<hr />
+<h2 id="9-champs-obligatoires">9. Champs obligatoires</h2>
+<pre><code class="language-text">eventId
+eventType
+eventVersion
+occurredAt
+correlationId
+source
+zoneId
+stationId
+pollutant
+measuredValue
+unit
+alertLevel
+threshold
+</code></pre>
+<hr />
+<h2 id="10-regles-de-compatibilite-du-contrat">10. Règles de compatibilité du contrat</h2>
+<ul>
+<li><code>eventVersion</code> est obligatoire.</li>
+<li>Les consommateurs doivent ignorer les champs inconnus.</li>
+<li>Les champs obligatoires ne doivent pas être supprimés en version <code>1.x</code>.</li>
+<li>L’ajout d’un champ optionnel est autorisé sans changement majeur de version.</li>
+<li>Toute modification incompatible du contrat devra produire une version <code>2.0</code>.</li>
+</ul>
+<hr />
+<h2 id="11-tests-dacceptation">11. Tests d’acceptation</h2>
+<h3 id="scenario-1-publication-et-consommation-dune-alerte-critique">Scénario 1 — Publication et consommation d’une alerte critique</h3>
+<pre><code class="language-gherkin">Feature: Transmission d'une alerte qualité de l'air critique
+
+Scenario: Une mesure NO2 critique est publiée puis consommée
+  Given une mesure NO2 de valeur 220.5 dans la zone ZFE-1
+  And le seuil critique NO2 est fixé à 200
+  When le microservice air-quality-service analyse la mesure
+  Then le niveau d'alerte retourné est CRITICAL
+  And un événement AirQualityAlertDetected est publié sur le topic air-quality.alert.detected
+  And l'événement contient zoneId &quot;ZFE-1&quot;
+  And l'événement contient alertLevel &quot;CRITICAL&quot;
+  When le microservice alerting-service consomme cet événement
+  Then une notification prioritaire CSU est préparée
+</code></pre>
+<h3 id="scenario-2-idempotence-lors-dun-doublon">Scénario 2 — Idempotence lors d’un doublon</h3>
+<pre><code class="language-gherkin">Feature: Idempotence des événements d'alerte
+
+Scenario: Un événement déjà traité ne déclenche pas une deuxième notification
+  Given un événement AirQualityAlertDetected avec eventId &quot;event-1&quot; a déjà été traité
+  When le microservice alerting-service reçoit à nouveau le même événement
+  Then aucune nouvelle notification CSU n'est préparée
+  And l'événement dupliqué est ignoré
+</code></pre>
+<hr />
+<h2 id="12-demarche-tdd-sur-alerting-service">12. Démarche TDD sur <code>alerting-service</code></h2>
+<p>La logique métier du microservice <code>alerting-service</code> a été développée en TDD.</p>
+<p>Le choix de conception est de séparer :</p>
+<pre><code class="language-text">AlertingService          → logique métier
+NotificationPort         → port de notification
+ProcessedEventRepository → port d’idempotence
+KafkaListener            → adaptateur technique
+</code></pre>
+<hr />
+<h2 id="13-boucle-tdd-1-notification-csu-pour-alerte-critique">13. Boucle TDD 1 — Notification CSU pour alerte critique</h2>
+<h3 id="red">Red</h3>
+<p>Premier test ajouté :</p>
+<pre><code class="language-java">@Test
+void shouldNotifyCsuWhenAirQualityAlertIsCritical() {
+    AirQualityAlertDetectedEvent event = criticalNo2Event(&quot;event-1&quot;);
+
+    when(processedEventRepository.hasAlreadyBeenProcessed(&quot;event-1&quot;))
+            .thenReturn(false);
+
+    alertingService.handle(event);
+
+    verify(notificationPort).notifyCsu(event);
+    verify(processedEventRepository).markAsProcessed(&quot;event-1&quot;);
+}
+</code></pre>
+<p>Résultat initial :</p>
+<pre><code class="language-text">Échec de compilation ou test rouge car AlertingService n'existe pas encore.
+</code></pre>
+<h3 id="green">Green</h3>
+<p>Implémentation minimale :</p>
+<pre><code class="language-java">public void handle(AirQualityAlertDetectedEvent event) {
+    if (&quot;CRITICAL&quot;.equals(event.alertLevel())) {
+        notificationPort.notifyCsu(event);
+    }
+
+    processedEventRepository.markAsProcessed(event.eventId());
+}
+</code></pre>
+<p>Résultat :</p>
+<pre><code class="language-text">Le test passe.
+</code></pre>
+<h3 id="refactor">Refactor</h3>
+<p>La condition de criticité est extraite dans une méthode dédiée :</p>
+<pre><code class="language-java">private boolean isCritical(AirQualityAlertDetectedEvent event) {
+    return &quot;CRITICAL&quot;.equals(event.alertLevel());
+}
+</code></pre>
+<hr />
+<h2 id="14-boucle-tdd-2-idempotence-par-eventid">14. Boucle TDD 2 — Idempotence par <code>eventId</code></h2>
+<h3 id="red_1">Red</h3>
+<p>Deuxième test ajouté :</p>
+<pre><code class="language-java">@Test
+void shouldIgnoreEventWhenEventIdWasAlreadyProcessed() {
+    AirQualityAlertDetectedEvent event = criticalNo2Event(&quot;event-1&quot;);
+
+    when(processedEventRepository.hasAlreadyBeenProcessed(&quot;event-1&quot;))
+            .thenReturn(true);
+
+    alertingService.handle(event);
+
+    verifyNoInteractions(notificationPort);
+    verify(processedEventRepository, never()).markAsProcessed(&quot;event-1&quot;);
+}
+</code></pre>
+<p>Résultat initial :</p>
+<pre><code class="language-text">Le test échoue car le service notifie encore les événements déjà traités.
+</code></pre>
+<h3 id="green_1">Green</h3>
+<p>Ajout de la vérification d’idempotence :</p>
+<pre><code class="language-java">public void handle(AirQualityAlertDetectedEvent event) {
+    if (processedEventRepository.hasAlreadyBeenProcessed(event.eventId())) {
+        return;
+    }
+
+    if (isCritical(event)) {
+        notificationPort.notifyCsu(event);
+    }
+
+    processedEventRepository.markAsProcessed(event.eventId());
+}
+</code></pre>
+<p>Résultat :</p>
+<pre><code class="language-text">Le test passe.
+</code></pre>
+<h3 id="refactor_1">Refactor</h3>
+<p>La logique métier reste isolée dans <code>AlertingService</code>, tandis que Kafka reste dans un adaptateur séparé.</p>
+<hr />
+<h2 id="15-test-complementaire-alerte-warning">15. Test complémentaire — Alerte WARNING</h2>
+<p>Un test complémentaire vérifie qu’une alerte <code>WARNING</code> est traitée mais ne déclenche pas de notification prioritaire CSU.</p>
+<pre><code class="language-java">@Test
+void shouldNotNotifyCsuWhenAlertLevelIsWarning() {
+    AirQualityAlertDetectedEvent event = warningNo2Event(&quot;event-2&quot;);
+
+    when(processedEventRepository.hasAlreadyBeenProcessed(&quot;event-2&quot;))
+            .thenReturn(false);
+
+    alertingService.handle(event);
+
+    verifyNoInteractions(notificationPort);
+    verify(processedEventRepository).markAsProcessed(&quot;event-2&quot;);
+}
+</code></pre>
+<hr />
+<h2 id="16-implementation-technique-du-consommateur-kafka">16. Implémentation technique du consommateur Kafka</h2>
+<p>Le listener Kafka reste volontairement mince.</p>
+<pre><code class="language-java">@KafkaListener(
+        topics = &quot;${urbanhub.kafka.topics.air-quality-alert-detected}&quot;,
+        containerFactory = &quot;airQualityAlertKafkaListenerContainerFactory&quot;
+)
+public void consume(AirQualityAlertDetectedEvent event) {
+    log.info(
+            &quot;Air quality alert consumed: eventId={}, correlationId={}, zoneId={}, pollutant={}, level={}&quot;,
+            event.eventId(),
+            event.correlationId(),
+            event.zoneId(),
+            event.pollutant(),
+            event.alertLevel()
+    );
+
+    alertingService.handle(event);
+}
+</code></pre>
+<p>Le listener ne contient pas de logique métier complexe. Il délègue au service testé :</p>
+<pre><code class="language-text">AirQualityAlertConsumer
+→ AlertingService.handle(event)
+</code></pre>
+<hr />
+<h2 id="17-configuration-kafka-consumer">17. Configuration Kafka consumer</h2>
+<p>Configuration attendue côté <code>alerting-service</code> :</p>
+<pre><code class="language-yaml">server:
+  port: 8081
+
+spring:
+  application:
+    name: alerting-service
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+urbanhub:
+  kafka:
+    topics:
+      air-quality-alert-detected: air-quality.alert.detected
+</code></pre>
+<p>La désérialisation utilise <code>JacksonJsonDeserializer</code> afin de rester compatible avec Spring Kafka 4.</p>
+<hr />
+<h2 id="18-mesures-de-robustesse">18. Mesures de robustesse</h2>
+<h3 id="181-idempotence">18.1 Idempotence</h3>
+<p>Le champ <code>eventId</code> sert de clé technique d’idempotence.</p>
+<p>Règle :</p>
+<pre><code class="language-text">Si eventId a déjà été traité, l’événement est ignoré.
+</code></pre>
+<p>Implémentation actuelle :</p>
+<pre><code class="language-text">InMemoryProcessedEventRepository
+</code></pre>
+<p>Limite :</p>
+<pre><code class="language-text">Cette implémentation est suffisante pour l’atelier, mais en production elle devrait être remplacée par un stockage persistant.
+</code></pre>
+<h3 id="182-retry-controle">18.2 Retry contrôlé</h3>
+<p>En cas d’erreur temporaire côté consommateur, le traitement doit être rejoué un nombre limité de fois.</p>
+<p>Stratégie proposée :</p>
+<pre><code class="language-text">Tentative 1 : immédiate
+Tentative 2 : après 1 seconde
+Tentative 3 : après 5 secondes
+</code></pre>
+<h3 id="183-dead-letter-queue">18.3 Dead Letter Queue</h3>
+<p>Topic DLQ prévu :</p>
+<pre><code class="language-text">air-quality.alert.detected.dlq
+</code></pre>
+<p>La DLQ reçoit les événements impossibles à traiter après les retries.</p>
+<p>Exemples :</p>
+<pre><code class="language-text">payload invalide
+zoneId manquant
+alertLevel inconnu
+pollutant non supporté
+erreur de désérialisation
+</code></pre>
+<hr />
+<h2 id="19-schema-de-robustesse">19. Schéma de robustesse</h2>
+<pre><code class="language-text">┌─────────────────────┐
+│ air-quality-service  │
+└──────────┬──────────┘
+           │ publish AirQualityAlertDetected
+           v
+┌───────────────────────────────────┐
+│ topic: air-quality.alert.detected │
+└──────────┬────────────────────────┘
+           │ consume
+           v
+┌─────────────────────┐
+│ alerting-service     │
+└──────────┬──────────┘
+           │
+           ├── Vérification eventId déjà traité
+           ├── Notification CSU si CRITICAL
+           ├── Marquage eventId traité
+           ├── Retry contrôlé en cas d’erreur
+           └── DLQ si échecs répétés
+</code></pre>
+<hr />
+<h2 id="20-observabilite-minimale">20. Observabilité minimale</h2>
+<h3 id="logs-structures">Logs structurés</h3>
+<p>Chaque événement publié ou consommé doit être traçable avec les champs suivants :</p>
+<pre><code class="language-text">eventId
+correlationId
+zoneId
+stationId
+pollutant
+alertLevel
+processingStatus
+timestamp
+</code></pre>
+<p>Exemple côté producteur :</p>
+<pre><code class="language-text">eventPublished=true eventType=AirQualityAlertDetected zoneId=ZFE-1 pollutant=NO2 alertLevel=CRITICAL
+</code></pre>
+<p>Exemple côté consommateur :</p>
+<pre><code class="language-text">eventConsumed=true eventId=... zoneId=ZFE-1 alertLevel=CRITICAL processingStatus=PROCESSED
+</code></pre>
+<p>Exemple côté notification :</p>
+<pre><code class="language-text">Priority CSU notification prepared: eventId=..., zoneId=ZFE-1, stationId=AIR-STATION-042, pollutant=NO2, level=CRITICAL
+</code></pre>
+<h3 id="metriques-minimales-proposees">Métriques minimales proposées</h3>
+<pre><code class="language-text">Nombre d’événements publiés
+Nombre d’événements consommés
+Nombre d’événements dupliqués
+Nombre d’erreurs de traitement
+Nombre d’événements envoyés en DLQ
+Latence entre occurredAt et traitement
+Consumer lag Kafka
+</code></pre>
+<h3 id="tracing">Tracing</h3>
+<p>Le champ <code>correlationId</code> permet de suivre le flux complet :</p>
+<pre><code class="language-text">API REST
+→ air-quality-service
+→ Kafka
+→ alerting-service
+→ notification CSU
+</code></pre>
+<hr />
+<h2 id="21-strategie-de-small-releases">21. Stratégie de small releases</h2>
+<h3 id="release-1-contrat-evenementiel">Release 1 — Contrat événementiel</h3>
+<p>Objectif : documenter le contrat <code>AirQualityAlertDetected</code>.</p>
+<p>Livrables :</p>
+<pre><code class="language-text">Contrat JSON
+Topic Kafka
+Règles de compatibilité
+</code></pre>
+<h3 id="release-2-producteur-kafka">Release 2 — Producteur Kafka</h3>
+<p>Objectif : publier un événement depuis <code>air-quality-service</code> lorsque le niveau d’alerte est <code>WARNING</code> ou <code>CRITICAL</code>.</p>
+<p>Livrables réalisés :</p>
+<pre><code class="language-text">AirQualityAlertDetectedEvent
+AirQualityAlertProducer
+Endpoint REST de test
+Publication Kafka validée manuellement
+</code></pre>
+<h3 id="release-3-consommateur-minimal">Release 3 — Consommateur minimal</h3>
+<p>Objectif : créer <code>alerting-service</code> et consommer les événements <code>AirQualityAlertDetected</code>.</p>
+<p>Livrables réalisés ou en cours :</p>
+<pre><code class="language-text">AirQualityAlertConsumer
+AlertingService
+ConsoleNotificationAdapter
+InMemoryProcessedEventRepository
+</code></pre>
+<h3 id="release-4-robustesse">Release 4 — Robustesse</h3>
+<p>Objectif : ajouter idempotence, retry et DLQ.</p>
+<p>Livrables :</p>
+<pre><code class="language-text">Idempotence par eventId
+Retry contrôlé
+Topic DLQ
+</code></pre>
+<h3 id="release-5-observabilite">Release 5 — Observabilité</h3>
+<p>Objectif : ajouter des métriques et des logs structurés exploitables.</p>
+<p>Livrables :</p>
+<pre><code class="language-text">Logs eventId / correlationId
+Métriques Kafka
+Suivi DLQ
+</code></pre>
+<hr />
+<h2 id="22-tests-realises-manuellement">22. Tests réalisés manuellement</h2>
+<h3 id="test-1-mesure-critique-no2">Test 1 — Mesure critique NO2</h3>
+<p>Commande :</p>
+<pre><code class="language-bash">curl -X POST http://localhost:8080/api/air-quality/measurements \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{
+    &quot;zoneId&quot;: &quot;ZFE-1&quot;,
+    &quot;stationId&quot;: &quot;AIR-STATION-042&quot;,
+    &quot;pollutant&quot;: &quot;NO2&quot;,
+    &quot;value&quot;: 220.5
+  }'
+</code></pre>
+<p>Résultat REST attendu :</p>
+<pre><code class="language-json">{
+  &quot;alertLevel&quot;: &quot;CRITICAL&quot;
+}
+</code></pre>
+<p>Résultat Kafka attendu :</p>
+<pre><code class="language-text">Un événement AirQualityAlertDetected est publié dans air-quality.alert.detected.
+</code></pre>
+<p>Résultat attendu côté <code>alerting-service</code> :</p>
+<pre><code class="language-text">Air quality alert consumed: eventId=..., zoneId=ZFE-1, pollutant=NO2, level=CRITICAL
+Priority CSU notification prepared: eventId=..., zoneId=ZFE-1, stationId=AIR-STATION-042, pollutant=NO2, level=CRITICAL
+</code></pre>
+<h3 id="test-2-mesure-normale-no2">Test 2 — Mesure normale NO2</h3>
+<p>Commande :</p>
+<pre><code class="language-bash">curl -X POST http://localhost:8080/api/air-quality/measurements \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{
+    &quot;zoneId&quot;: &quot;ZFE-1&quot;,
+    &quot;stationId&quot;: &quot;AIR-STATION-042&quot;,
+    &quot;pollutant&quot;: &quot;NO2&quot;,
+    &quot;value&quot;: 80
+  }'
+</code></pre>
+<p>Résultat REST attendu :</p>
+<pre><code class="language-json">{
+  &quot;alertLevel&quot;: &quot;NORMAL&quot;
+}
+</code></pre>
+<p>Résultat Kafka attendu :</p>
+<pre><code class="language-text">Aucun nouvel événement n’est publié.
+</code></pre>
+<hr />
+<h2 id="23-diagnostic-en-cas-de-non-consommation-kafka">23. Diagnostic en cas de non-consommation Kafka</h2>
+<p>Si <code>alerting-service</code> ne consomme pas, vérifier dans l’ordre :</p>
+<pre><code class="language-text">1. Le topic existe bien : air-quality.alert.detected
+2. Le producer publie réellement un message visible avec kafka-console-consumer
+3. Le service alerting-service démarre sans erreur
+4. @EnableKafka est présent ou KafkaListener est bien activé
+5. Le @KafkaListener pointe vers le bon topic
+6. Le containerFactory référencé existe bien
+7. Le group.id n’a pas déjà consommé les anciens messages
+8. Le désérialiseur JacksonJsonDeserializer est compatible avec l’événement
+9. Le record AirQualityAlertDetectedEvent côté consumer correspond au JSON publié
+10. Les classes sont bien dans le package scanné par Spring Boot
+</code></pre>
+<p>Commande utile pour vérifier les messages dans le topic :</p>
+<pre><code class="language-bash">kafka-console-consumer --bootstrap-server localhost:9092 --topic air-quality.alert.detected --from-beginning
+</code></pre>
+<p>Astuce de debug : changer temporairement le consumer group pour relire les messages :</p>
+<pre><code class="language-text">alerting-service-test-1
+</code></pre>
+<hr />
+<h2 id="24-cicd-minimale">24. CI/CD minimale</h2>
+<p>Une CI minimale doit être définie pour chaque microservice.</p>
+<h3 id="ci-air-quality-service">CI <code>air-quality-service</code></h3>
+<pre><code class="language-text">compile
+unit tests
+build
+</code></pre>
+<h3 id="ci-alerting-service">CI <code>alerting-service</code></h3>
+<pre><code class="language-text">compile
+unit tests
+build
+</code></pre>
+<p>Exemple d’objectif :</p>
+<pre><code class="language-text">Le pipeline doit rester rapide et inférieur à 10 minutes.
+</code></pre>
+<hr />
+<h2 id="25-retrospective-xp">25. Rétrospective XP</h2>
+<h3 id="ce-qui-a-bien-fonctionne">Ce qui a bien fonctionné</h3>
+<ul>
+<li>Le découpage par small releases a permis de sécuriser progressivement l’intégration.</li>
+<li>La logique métier du consommateur a été testée avant le branchement Kafka.</li>
+<li>L’utilisation de ports (<code>NotificationPort</code>, <code>ProcessedEventRepository</code>) facilite les tests unitaires.</li>
+<li>Le listener Kafka reste mince et ne contient pas de logique métier complexe.</li>
+</ul>
+<h3 id="difficultes-rencontrees">Difficultés rencontrées</h3>
+<ul>
+<li>La configuration Kafka peut masquer les erreurs de topic, de group ou de désérialisation.</li>
+<li>Le typage JSON entre producer et consumer doit rester cohérent.</li>
+<li>L’offset Kafka peut donner l’impression que le consumer ne fonctionne pas si les messages ont déjà été consommés.</li>
+</ul>
+<h3 id="ameliorations-possibles">Améliorations possibles</h3>
+<ul>
+<li>Ajouter un test d’intégration avec Testcontainers Kafka.</li>
+<li>Persister les <code>eventId</code> traités dans une base de données.</li>
+<li>Implémenter réellement retry + DLQ.</li>
+<li>Ajouter des métriques Micrometer.</li>
+<li>Ajouter un dashboard d’observabilité.</li>
+</ul>
+<hr />
+<h2 id="26-preuves-a-joindre-au-rendu">26. Preuves à joindre au rendu</h2>
+<p>À joindre sous forme de captures d’écran ou d’extraits :</p>
+<pre><code class="language-text">Capture du curl critique
+Capture de la réponse REST CRITICAL
+Capture du kafka-console-consumer montrant l’événement publié
+Capture des logs alerting-service montrant la consommation
+Capture des tests unitaires alerting-service verts
+Capture de la CI verte
+Extrait du contrat AirQualityAlertDetected
+</code></pre>
+<hr />
+<h2 id="27-conclusion">27. Conclusion</h2>
+<p>L’atelier a permis de sécuriser une interaction critique dans une architecture Smart City distribuée.</p>
+<p>La chaîne cible est :</p>
+<pre><code class="language-text">API REST
+→ air-quality-service
+→ Kafka
+→ alerting-service
+→ notification CSU
+</code></pre>
+<p>La démarche XP a été appliquée côté <code>alerting-service</code> avec :</p>
+<pre><code class="language-text">TDD
+petites boucles Red-Green-Refactor
+séparation logique métier / infrastructure
+small releases
+observabilité minimale
+robustesse par idempotence, retry et DLQ
+</code></pre>
+<p>Cette approche permet de faire évoluer progressivement l’architecture sans bloquer le projet par une intégration trop lourde dès le départ.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

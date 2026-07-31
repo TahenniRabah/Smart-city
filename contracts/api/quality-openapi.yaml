@@ -1,0 +1,37 @@
+openapi: 3.1.0
+info:
+  title: UrbanHub - Quality Service API
+  description: API du service qualité pour superviser la validation des mesures IoT.
+  version: 1.0.0
+servers:
+- url: http://localhost:8083
+  description: Generated server url
+tags:
+- name: Quality
+  description: Supervision du service qualité
+paths:
+  /api/quality/status:
+    get:
+      tags:
+      - Quality
+      summary: Consulter le statut du service qualité
+      operationId: status
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/QualityStatusResponse"
+components:
+  schemas:
+    QualityStatusResponse:
+      type: object
+      description: Statut du service qualité
+      properties:
+        status:
+          type: string
+          example: UP
+        service:
+          type: string
+          example: quality-service

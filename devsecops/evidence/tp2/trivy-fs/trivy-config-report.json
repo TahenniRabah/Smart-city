@@ -1,0 +1,149 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.72.0"
+  },
+  "ReportID": "019fa925-360d-78c8-b064-abffeb4d375e",
+  "CreatedAt": "2026-07-28T14:33:36.013577997Z",
+  "ArtifactID": "sha256:e045bc2ca0d5fdeec197f9577088ce10fab618bf10cef2e66a1cbacdf2b0ec32",
+  "ArtifactName": "/src",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/TahenniRabah/Smart-city.git",
+    "Branch": "main",
+    "Commit": "05251b40302bbae7b8e51e93d38a276af799f547",
+    "CommitMsg": "test(security): add Gitleaks secret scanning baseline",
+    "Author": "TAHENNI \u003crabah.tahenni@capgemini.com\u003e",
+    "Committer": "TAHENNI \u003crabah.tahenni@capgemini.com\u003e"
+  },
+  "Results": [
+    {
+      "Target": "services/air-quality-service/Dockerfile",
+      "Class": "config",
+      "Type": "dockerfile",
+      "MisconfSummary": {
+        "Successes": 19,
+        "Failures": 1
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Dockerfile Security Check",
+          "ID": "DS-0002",
+          "Title": "Image user should not be 'root'",
+          "Description": "Running containers with 'root' user can lead to a container escape situation. It is a best practice to run containers as non-root users, which can be done by adding a 'USER' statement to the Dockerfile.",
+          "Message": "Specify at least 1 USER command in Dockerfile with non-root user as argument",
+          "Namespace": "builtin.dockerfile.DS002",
+          "Query": "data.builtin.dockerfile.DS002.deny",
+          "Resolution": "Add 'USER \u003cnon root user name\u003e' line to the Dockerfile",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/ds-0002",
+          "References": [
+            "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+            "https://avd.aquasec.com/misconfig/ds-0002"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Provider": "Dockerfile",
+            "Service": "general"
+          }
+        }
+      ]
+    },
+    {
+      "Target": "services/alerting-service/Dockerfile",
+      "Class": "config",
+      "Type": "dockerfile",
+      "MisconfSummary": {
+        "Successes": 19,
+        "Failures": 1
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Dockerfile Security Check",
+          "ID": "DS-0002",
+          "Title": "Image user should not be 'root'",
+          "Description": "Running containers with 'root' user can lead to a container escape situation. It is a best practice to run containers as non-root users, which can be done by adding a 'USER' statement to the Dockerfile.",
+          "Message": "Specify at least 1 USER command in Dockerfile with non-root user as argument",
+          "Namespace": "builtin.dockerfile.DS002",
+          "Query": "data.builtin.dockerfile.DS002.deny",
+          "Resolution": "Add 'USER \u003cnon root user name\u003e' line to the Dockerfile",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/ds-0002",
+          "References": [
+            "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+            "https://avd.aquasec.com/misconfig/ds-0002"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Provider": "Dockerfile",
+            "Service": "general"
+          }
+        }
+      ]
+    },
+    {
+      "Target": "services/ingestion-service/Dockerfile",
+      "Class": "config",
+      "Type": "dockerfile",
+      "MisconfSummary": {
+        "Successes": 19,
+        "Failures": 1
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Dockerfile Security Check",
+          "ID": "DS-0002",
+          "Title": "Image user should not be 'root'",
+          "Description": "Running containers with 'root' user can lead to a container escape situation. It is a best practice to run containers as non-root users, which can be done by adding a 'USER' statement to the Dockerfile.",
+          "Message": "Specify at least 1 USER command in Dockerfile with non-root user as argument",
+          "Namespace": "builtin.dockerfile.DS002",
+          "Query": "data.builtin.dockerfile.DS002.deny",
+          "Resolution": "Add 'USER \u003cnon root user name\u003e' line to the Dockerfile",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/ds-0002",
+          "References": [
+            "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+            "https://avd.aquasec.com/misconfig/ds-0002"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Provider": "Dockerfile",
+            "Service": "general"
+          }
+        }
+      ]
+    },
+    {
+      "Target": "services/quality-service/Dockerfile",
+      "Class": "config",
+      "Type": "dockerfile",
+      "MisconfSummary": {
+        "Successes": 19,
+        "Failures": 1
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Dockerfile Security Check",
+          "ID": "DS-0002",
+          "Title": "Image user should not be 'root'",
+          "Description": "Running containers with 'root' user can lead to a container escape situation. It is a best practice to run containers as non-root users, which can be done by adding a 'USER' statement to the Dockerfile.",
+          "Message": "Specify at least 1 USER command in Dockerfile with non-root user as argument",
+          "Namespace": "builtin.dockerfile.DS002",
+          "Query": "data.builtin.dockerfile.DS002.deny",
+          "Resolution": "Add 'USER \u003cnon root user name\u003e' line to the Dockerfile",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/ds-0002",
+          "References": [
+            "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+            "https://avd.aquasec.com/misconfig/ds-0002"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Provider": "Dockerfile",
+            "Service": "general"
+          }
+        }
+      ]
+    }
+  ]
+}

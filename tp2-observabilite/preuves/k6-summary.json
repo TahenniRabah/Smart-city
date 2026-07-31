@@ -1,0 +1,148 @@
+{
+    "metrics": {
+        "http_reqs": {
+            "count": 240,
+            "rate": 1.99358359140356
+        },
+        "http_req_tls_handshaking": {
+            "avg": 0,
+            "min": 0,
+            "med": 0,
+            "max": 0,
+            "p(90)": 0,
+            "p(95)": 0
+        },
+        "http_req_blocked": {
+            "med": 0,
+            "max": 11.1458,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.09772,
+            "min": 0
+        },
+        "iteration_duration": {
+            "avg": 1003.2185299999989,
+            "min": 1001.9897,
+            "med": 1003.0464,
+            "max": 1017.3223,
+            "p(90)": 1003.59295,
+            "p(95)": 1003.8056
+        },
+        "http_req_waiting": {
+            "avg": 2.645853750000002,
+            "min": 1.5083,
+            "med": 2.61015,
+            "max": 4.6724,
+            "p(90)": 3.1716,
+            "p(95)": 3.235749999999999
+        },
+        "urbanhub_accepted": {
+            "fails": 240,
+            "passes": 0,
+            "thresholds": {
+                "rate>0.99": true
+            },
+            "value": 0
+        },
+        "data_sent": {
+            "count": 74560,
+            "rate": 619.339969062706
+        },
+        "http_req_failed": {
+            "passes": 240,
+            "fails": 0,
+            "thresholds": {
+                "rate<0.01": true
+            },
+            "value": 1
+        },
+        "http_req_duration": {
+            "avg": 2.6911612500000017,
+            "min": 1.5083,
+            "med": 2.6417,
+            "max": 4.6724,
+            "p(90)": 3.1804599999999996,
+            "p(95)": 3.3118,
+            "thresholds": {
+                "p(95)<500": false
+            }
+        },
+        "http_req_sending": {
+            "max": 0.5373,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.004017916666666666,
+            "min": 0,
+            "med": 0
+        },
+        "urbanhub_ingestion_duration": {
+            "p(90)": 3.1804599999999996,
+            "p(95)": 3.3118,
+            "avg": 2.6911612500000017,
+            "min": 1.5083,
+            "med": 2.6417,
+            "max": 4.6724
+        },
+        "http_req_connecting": {
+            "min": 0,
+            "med": 0,
+            "max": 0.5806,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.009159166666666666
+        },
+        "vus": {
+            "value": 2,
+            "min": 2,
+            "max": 2
+        },
+        "data_received": {
+            "count": 112118,
+            "rate": 931.3191879207681
+        },
+        "vus_max": {
+            "value": 2,
+            "min": 2,
+            "max": 2
+        },
+        "iterations": {
+            "count": 240,
+            "rate": 1.99358359140356
+        },
+        "http_req_receiving": {
+            "p(90)": 0,
+            "p(95)": 0.5168,
+            "avg": 0.04128958333333334,
+            "min": 0,
+            "med": 0,
+            "max": 1.5074
+        },
+        "checks": {
+            "passes": 0,
+            "fails": 480,
+            "value": 0
+        }
+    },
+    "root_group": {
+        "groups": {},
+        "checks": {
+                "status is 202": {
+                    "passes": 0,
+                    "fails": 240,
+                    "name": "status is 202",
+                    "path": "::status is 202",
+                    "id": "34a6d451b2be8259be22b1a5c2a715cf"
+                },
+                "correlationId exists": {
+                    "passes": 0,
+                    "fails": 240,
+                    "name": "correlationId exists",
+                    "path": "::correlationId exists",
+                    "id": "9300bb43d081f8e6da659e3779083b5a"
+                }
+            },
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e"
+    }
+}

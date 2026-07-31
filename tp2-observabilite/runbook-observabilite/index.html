@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="UrbanHub Team">
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>TP2 · Runbook d’observabilité UrbanHub - UrbanHub Smart City</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">UrbanHub Smart City</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Accueil</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Clean Code</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../clean-code/clean-code-examples/" class="dropdown-item">SOLID, DRY, KISS</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tests</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tests/testing-strategy/" class="dropdown-item">Stratégie de tests</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design Patterns</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../design-patterns/sensor-state-pattern/" class="dropdown-item">Sensor State Pattern</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Outils</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tools/tools-used/" class="dropdown-item">Outils utilisés</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Communication</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../communication/technical-vs-functional/" class="dropdown-item">Technique vs fonctionnelle</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Conventions</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../conventions/conventional-commits/" class="dropdown-item">Conventional Commits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Contrats</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../contracts/" class="dropdown-item">Vue d’ensemble</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Événements</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../contracts/events/air-quality-alert-detected/" class="dropdown-item">AirQualityAlertDetected</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-received/" class="dropdown-item">MeasurementReceived</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-validated/" class="dropdown-item">MeasurementValidated</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-rejected/" class="dropdown-item">MeasurementRejected</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Ateliers XP</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../xp-workshops/atelier-2-air-quality/" class="dropdown-item">Atelier 2 — Air Quality</a>
+</li>
+                                    
+<li>
+    <a href="../../xp-workshops/atelier-3-smart-city-distributed/" class="dropdown-item">Atelier 3 — Smart City distribuée</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Architecture</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../architecture/sequence-flow/" class="dropdown-item">Flux événementiel</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#tp2-runbook-dobservabilite-urbanhub" class="nav-link">TP2 · Runbook d’observabilité UrbanHub</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-objet" class="nav-link">1. Objet</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-informations-utiles" class="nav-link">2. Informations utiles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-principes-dintervention" class="nav-link">3. Principes d’intervention</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-alerte-urbanhubhighlatencyp95" class="nav-link">4. Alerte UrbanHubHighLatencyP95</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-alerte-urbanhubhighservererrorrate" class="nav-link">5. Alerte UrbanHubHighServerErrorRate</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-alerte-urbanhubingestionsilent" class="nav-link">6. Alerte UrbanHubIngestionSilent</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-alerte-urbanhubkafkapublishfailures" class="nav-link">7. Alerte UrbanHubKafkaPublishFailures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-collecte-des-preuves" class="nav-link">8. Collecte des preuves</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-criteres-de-resolution" class="nav-link">9. Critères de résolution</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="tp2-runbook-dobservabilite-urbanhub">TP2 · Runbook d’observabilité UrbanHub</h1>
+<h2 id="1-objet">1. Objet</h2>
+<p>Ce runbook décrit les actions à effectuer lorsqu’une alerte menace les SLO du service <code>ingestion-service</code> d’UrbanHub.</p>
+<p>Périmètre observé :</p>
+<pre><code class="language-text">Passerelle IoT
+  -&gt; POST /api/ingestion/measurements
+  -&gt; ingestion-service
+  -&gt; Kafka / measurements.received
+</code></pre>
+<h2 id="2-informations-utiles">2. Informations utiles</h2>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Accès local</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API d’ingestion</td>
+<td><code>http://localhost:8082</code></td>
+</tr>
+<tr>
+<td>Readiness</td>
+<td><code>http://localhost:8082/actuator/health/readiness</code></td>
+</tr>
+<tr>
+<td>Métriques</td>
+<td><code>http://localhost:8082/actuator/prometheus</code></td>
+</tr>
+<tr>
+<td>Prometheus</td>
+<td><code>http://localhost:9090</code></td>
+</tr>
+<tr>
+<td>Alertmanager</td>
+<td><code>http://localhost:9093</code></td>
+</tr>
+<tr>
+<td>Grafana</td>
+<td><code>http://localhost:3000</code></td>
+</tr>
+<tr>
+<td>Loki</td>
+<td><code>http://localhost:3100</code></td>
+</tr>
+<tr>
+<td>Tempo</td>
+<td><code>http://localhost:3200</code></td>
+</tr>
+<tr>
+<td>Redpanda Console</td>
+<td><code>http://localhost:8090</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-principes-dintervention">3. Principes d’intervention</h2>
+<ol>
+<li>Conserver les preuves avant toute action destructive.</li>
+<li>Noter l’heure de début de l’incident en UTC.</li>
+<li>Vérifier d’abord le symptôme utilisateur, puis les ressources.</li>
+<li>Corréler métriques, logs et traces avec la même fenêtre temporelle.</li>
+<li>Utiliser le <code>correlationId</code> et le <code>traceId</code> lorsque ceux-ci sont disponibles.</li>
+<li>Ne redémarrer un service qu’après avoir exporté les données utiles au diagnostic.</li>
+</ol>
+<h2 id="4-alerte-urbanhubhighlatencyp95">4. Alerte <code>UrbanHubHighLatencyP95</code></h2>
+<h3 id="declenchement">Déclenchement</h3>
+<p>La latence P95 de l’endpoint d’ingestion dépasse 500 ms pendant au moins 5 minutes.</p>
+<h3 id="impact-possible">Impact possible</h3>
+<ul>
+<li>retard dans l’acceptation des mesures urbaines ;</li>
+<li>consommation accélérée de l’error budget de latence ;</li>
+<li>accumulation de requêtes ou saturation d’une dépendance ;</li>
+<li>dégradation du caractère quasi temps réel de la plateforme.</li>
+</ul>
+<h3 id="diagnostic">Diagnostic</h3>
+<ol>
+<li>Vérifier simultanément le débit, le P95 et le P99 dans le dashboard Golden Signals.</li>
+<li>Examiner le CPU et la mémoire du conteneur <code>ingestion-service</code>.</li>
+<li>Vérifier le heap, les threads JVM et les éventuelles pauses GC.</li>
+<li>Ouvrir une trace lente dans Tempo et identifier le span dominant.</li>
+<li>Vérifier la durée de publication Kafka et la santé du broker.</li>
+<li>Contrôler le volume de réponses <code>429</code> afin de distinguer saturation et rate limiting.</li>
+</ol>
+<h3 id="commandes-cmd">Commandes CMD</h3>
+<pre><code class="language-cmd">curl.exe -s http://localhost:8082/actuator/health/readiness
+curl.exe -s http://localhost:9090/api/v1/alerts
+curl.exe -s http://localhost:9090/api/v1/targets
+docker logs ingestion-service --since 15m
+docker logs urbanhub-kafka --since 15m
+</code></pre>
+<h3 id="actions">Actions</h3>
+<ul>
+<li>réduire ou arrêter temporairement le générateur de charge ;</li>
+<li>vérifier une modification ou un déploiement récent ;</li>
+<li>restaurer la configuration précédente si la régression est liée à un changement ;</li>
+<li>redémarrer uniquement après conservation des preuves ;</li>
+<li>ouvrir une action d’optimisation si le seuil est reproductiblement dépassé.</li>
+</ul>
+<h2 id="5-alerte-urbanhubhighservererrorrate">5. Alerte <code>UrbanHubHighServerErrorRate</code></h2>
+<h3 id="declenchement_1">Déclenchement</h3>
+<p>Le taux de réponses HTTP <code>5xx</code> dépasse 1 % pendant au moins 5 minutes.</p>
+<h3 id="impact-possible_1">Impact possible</h3>
+<ul>
+<li>mesures valides non acceptées ;</li>
+<li>perte potentielle d’événements ;</li>
+<li>consommation de l’error budget de disponibilité et d’acceptation.</li>
+</ul>
+<h3 id="diagnostic_1">Diagnostic</h3>
+<ol>
+<li>Vérifier la répartition des codes HTTP dans Grafana.</li>
+<li>Distinguer les erreurs <code>400</code>, <code>401</code>, <code>429</code> et <code>5xx</code>.</li>
+<li>Examiner les logs du service sur la fenêtre d’alerte.</li>
+<li>Rechercher un <code>correlationId</code> associé à une erreur.</li>
+<li>Ouvrir la trace correspondante dans Tempo.</li>
+<li>Vérifier Kafka si l’erreur se produit pendant la publication.</li>
+</ol>
+<h3 id="commandes-cmd_1">Commandes CMD</h3>
+<pre><code class="language-cmd">docker logs ingestion-service --since 15m &gt; docs    p2-observabilite\preuves\ingestion-errors.log
+curl.exe -s http://localhost:9090/api/v1/alerts &gt; docs  p2-observabilite\preuves    p2-alerts.json
+</code></pre>
+<h3 id="actions_1">Actions</h3>
+<ul>
+<li>corriger ou annuler le changement fautif ;</li>
+<li>vérifier la connectivité avec Kafka ;</li>
+<li>conserver une requête et une trace représentatives ;</li>
+<li>classer l’incident comme critique si les mesures valides ne sont plus acceptées.</li>
+</ul>
+<h2 id="6-alerte-urbanhubingestionsilent">6. Alerte <code>UrbanHubIngestionSilent</code></h2>
+<h3 id="declenchement_2">Déclenchement</h3>
+<p>Aucune mesure valide n’a été acceptée depuis plus de 5 minutes, puis la condition est restée vraie pendant 1 minute.</p>
+<h3 id="impact-possible_2">Impact possible</h3>
+<ul>
+<li>interruption des passerelles IoT ;</li>
+<li>indisponibilité de l’API ;</li>
+<li>blocage du flux d’ingestion ;</li>
+<li>absence de données fraîches pour l’analyse et l’alerting.</li>
+</ul>
+<h3 id="diagnostic_2">Diagnostic</h3>
+<ol>
+<li>Vérifier que les passerelles ou k6 ne sont pas simplement arrêtés volontairement.</li>
+<li>Tester la readiness de l’API.</li>
+<li>Envoyer une mesure valide avec la clé API.</li>
+<li>Vérifier le compteur des réponses <code>202</code>.</li>
+<li>Vérifier le compteur de succès Kafka.</li>
+<li>Contrôler le topic <code>measurements.received</code> dans Redpanda Console.</li>
+</ol>
+<h3 id="commandes-cmd_2">Commandes CMD</h3>
+<pre><code class="language-cmd">curl.exe -s http://localhost:8082/actuator/health/readiness
+curl.exe -s http://localhost:8082/actuator/prometheus | findstr urbanhub_sensor_last_seen_epoch_seconds
+curl.exe -s http://localhost:9090/api/v1/alerts
+curl.exe -s http://localhost:9093/api/v2/alerts
+</code></pre>
+<h3 id="actions_2">Actions</h3>
+<ul>
+<li>relancer le producteur de mesures si l’arrêt n’était pas prévu ;</li>
+<li>restaurer l’API si la readiness est en échec ;</li>
+<li>vérifier Kafka si l’API accepte les mesures mais qu’aucun événement n’est publié ;</li>
+<li>clôturer l’incident après réception d’une nouvelle mesure et résolution de l’alerte.</li>
+</ul>
+<h2 id="7-alerte-urbanhubkafkapublishfailures">7. Alerte <code>UrbanHubKafkaPublishFailures</code></h2>
+<h3 id="declenchement_3">Déclenchement</h3>
+<p>Au moins une publication Kafka a échoué au cours des 5 dernières minutes et la condition reste vraie pendant 1 minute.</p>
+<h3 id="impact-possible_3">Impact possible</h3>
+<p>Une requête peut avoir reçu HTTP <code>202</code> alors que l’acquittement Kafka échoue ensuite, car la publication est asynchrone.</p>
+<h3 id="diagnostic_3">Diagnostic</h3>
+<ol>
+<li>Vérifier la santé du conteneur Kafka.</li>
+<li>Vérifier la résolution et l’accès à <code>kafka:29092</code> depuis <code>ingestion-service</code>.</li>
+<li>Examiner les compteurs Kafka succès/échec.</li>
+<li>Rechercher le <code>correlationId</code> dans les logs.</li>
+<li>Vérifier la présence de l’événement dans <code>measurements.received</code>.</li>
+</ol>
+<h3 id="commandes-cmd_3">Commandes CMD</h3>
+<pre><code class="language-cmd">docker ps --filter name=urbanhub-kafka
+docker logs urbanhub-kafka --since 15m
+docker logs ingestion-service --since 15m | findstr &quot;publication failed&quot;
+curl.exe -s http://localhost:8082/actuator/prometheus | findstr urbanhub_kafka_publish
+</code></pre>
+<h3 id="actions_3">Actions</h3>
+<ul>
+<li>restaurer Kafka ou la connectivité réseau ;</li>
+<li>vérifier les paramètres du producteur ;</li>
+<li>identifier les événements potentiellement perdus à partir des <code>correlationId</code> ;</li>
+<li>prévoir ultérieurement retry, idempotence et DLQ selon l’architecture retenue.</li>
+</ul>
+<h2 id="8-collecte-des-preuves">8. Collecte des preuves</h2>
+<p>Les preuves doivent être déposées dans :</p>
+<pre><code class="language-text">docs/tp2-observabilite/preuves/
+</code></pre>
+<p>Fichiers utiles :</p>
+<pre><code class="language-text">prometheus-targets.json
+prometheus-rules.json
+tp2-alerts.json
+alertmanager-alerts.json
+tp2-alertmanager-events.jsonl
+ingestion-response.json
+kafka-publication-correlated.log
+tempo-trace.json
+k6-summary.json
+</code></pre>
+<h2 id="9-criteres-de-resolution">9. Critères de résolution</h2>
+<p>Un incident est considéré comme résolu lorsque :</p>
+<ul>
+<li>l’alerte n’est plus en état <code>firing</code> ;</li>
+<li>le service est <code>UP</code> ;</li>
+<li>une mesure valide reçoit HTTP <code>202</code> ;</li>
+<li>la publication Kafka correspondante est confirmée ;</li>
+<li>les métriques reviennent dans les seuils ;</li>
+<li>les preuves et les actions sont documentées.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

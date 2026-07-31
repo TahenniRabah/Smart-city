@@ -1,0 +1,1 @@
+{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"urbanhub_sensor_last_seen_epoch_seconds","application":"ingestion-service","environment":"prod,observability","instance":"ingestion-service:8082","job":"ingestion-service","service":"ingestion-service"},"value":[1785457244.531,"1785457186"]}]}}

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="UrbanHub Team">
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Stratégie de tests - UrbanHub Smart City</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">UrbanHub Smart City</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Accueil</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Clean Code</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../clean-code/clean-code-examples/" class="dropdown-item">SOLID, DRY, KISS</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tests</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Stratégie de tests</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design Patterns</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../design-patterns/sensor-state-pattern/" class="dropdown-item">Sensor State Pattern</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Outils</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tools/tools-used/" class="dropdown-item">Outils utilisés</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Communication</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../communication/technical-vs-functional/" class="dropdown-item">Technique vs fonctionnelle</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Conventions</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../conventions/conventional-commits/" class="dropdown-item">Conventional Commits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Contrats</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../contracts/" class="dropdown-item">Vue d’ensemble</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Événements</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../contracts/events/air-quality-alert-detected/" class="dropdown-item">AirQualityAlertDetected</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-received/" class="dropdown-item">MeasurementReceived</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-validated/" class="dropdown-item">MeasurementValidated</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-rejected/" class="dropdown-item">MeasurementRejected</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Ateliers XP</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../xp-workshops/atelier-2-air-quality/" class="dropdown-item">Atelier 2 — Air Quality</a>
+</li>
+                                    
+<li>
+    <a href="../../xp-workshops/atelier-3-smart-city-distributed/" class="dropdown-item">Atelier 3 — Smart City distribuée</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Architecture</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../architecture/sequence-flow/" class="dropdown-item">Flux événementiel</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../clean-code/clean-code-examples/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../design-patterns/sensor-state-pattern/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#testing-strategy-smart-city-urbanhub" class="nav-link">Testing Strategy — Smart City / UrbanHub</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-objectif" class="nav-link">1. Objectif</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-services-concernes" class="nav-link">2. Services concernés</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-types-de-tests-utilises" class="nav-link">3. Types de tests utilisés</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-exemple-de-test-unitaire-ingestion-service" class="nav-link">4. Exemple de test unitaire — ingestion-service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-exemple-de-mock" class="nav-link">5. Exemple de mock</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-exemple-de-stub" class="nav-link">6. Exemple de stub</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-exemple-de-test-unitaire-quality-service" class="nav-link">7. Exemple de test unitaire — quality-service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-exemple-de-test-unitaire-air-quality-service" class="nav-link">8. Exemple de test unitaire — air-quality-service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-exemple-de-test-unitaire-alerting-service" class="nav-link">9. Exemple de test unitaire — alerting-service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#10-test-didempotence" class="nav-link">10. Test d’idempotence</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#11-test-du-design-pattern-state-sensor" class="nav-link">11. Test du Design Pattern State — Sensor</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#12-demarche-tdd-utilisee" class="nav-link">12. Démarche TDD utilisée</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#13-tests-manuels-avec-postman" class="nav-link">13. Tests manuels avec Postman</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#14-tests-kafka-manuels" class="nav-link">14. Tests Kafka manuels</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#15-tests-end-to-end-manuels" class="nav-link">15. Tests end-to-end manuels</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#16-ci-et-automatisation" class="nav-link">16. CI et automatisation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#17-limites-actuelles" class="nav-link">17. Limites actuelles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#18-synthese" class="nav-link">18. Synthèse</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="testing-strategy-smart-city-urbanhub">Testing Strategy — Smart City / UrbanHub</h1>
+<h2 id="1-objectif">1. Objectif</h2>
+<p>Ce document décrit la stratégie de tests appliquée dans le projet <strong>Smart City / UrbanHub</strong>.</p>
+<p>L’objectif est de garantir que les microservices restent :</p>
+<ul>
+<li>testables ;</li>
+<li>maintenables ;</li>
+<li>découplés de l’infrastructure ;</li>
+<li>fiables dans une architecture distribuée ;</li>
+<li>compatibles avec une démarche XP / TDD.</li>
+</ul>
+<p>Les tests couvrent principalement :</p>
+<ul>
+<li>les tests unitaires ;</li>
+<li>les mocks ;</li>
+<li>les stubs ;</li>
+<li>les tests de logique métier ;</li>
+<li>les tests manuels API via Postman ou <code>curl</code> ;</li>
+<li>les tests de publication / consommation Kafka ;</li>
+<li>la validation par CI.</li>
+</ul>
+<p>---</p>
+<h2 id="2-services-concernes">2. Services concernés</h2>
+<p>Les microservices actuellement couverts par cette stratégie sont :</p>
+<pre><code class="language-text">ingestion-service
+quality-service
+air-quality-service
+alerting-service
+</code></pre>
+<p>Chaque microservice possède sa propre logique métier, ses tests et sa pipeline CI dédiée.</p>
+<p>---</p>
+<h2 id="3-types-de-tests-utilises">3. Types de tests utilisés</h2>
+<h3 id="31-tests-unitaires">3.1 Tests unitaires</h3>
+<p>Les tests unitaires vérifient la logique métier sans dépendre de Kafka, d’une base de données ou d’un autre service.</p>
+<p>Exemples de classes testées :</p>
+<ul>
+<li><code>MeasurementIngestionService</code> ;</li>
+<li><code>MeasurementQualityService</code> ;</li>
+<li><code>AirQualityAlertService</code> ;</li>
+<li><code>AirQualityAnalysisService</code> ;</li>
+<li><code>AlertingService</code> ;</li>
+<li><code>Sensor</code>.</li>
+</ul>
+<p>Objectifs :</p>
+<ul>
+<li>tester rapidement une règle métier isolée ;</li>
+<li>éviter les dépendances réseau ;</li>
+<li>éviter de démarrer Kafka ;</li>
+<li>rendre les tests rapides et déterministes.</li>
+</ul>
+<h3 id="32-tests-avec-mocks">3.2 Tests avec mocks</h3>
+<p>Les mocks sont utilisés pour remplacer les dépendances externes.</p>
+<p>Exemple :</p>
+<pre><code class="language-java">private final MeasurementReceivedPublisher publisher =
+        mock(MeasurementReceivedPublisher.class);
+</code></pre>
+<p>Dans cet exemple, le publisher Kafka est remplacé par un mock.</p>
+<p>Cela permet de vérifier que le service métier demande bien la publication d’un événement, sans réellement publier dans Kafka.</p>
+<h3 id="33-tests-avec-stubs">3.3 Tests avec stubs</h3>
+<p>Les stubs sont utilisés pour forcer une valeur connue dans un test.</p>
+<p>Exemple :</p>
+<pre><code class="language-java">when(correlationIdGenerator.generate()).thenReturn(&quot;corr-12345&quot;);
+</code></pre>
+<p>Cela permet de rendre le test déterministe.</p>
+<p>Sans stub, le <code>correlationId</code> serait généré aléatoirement, ce qui rendrait le test plus difficile à vérifier.</p>
+<h3 id="34-tests-manuels-api">3.4 Tests manuels API</h3>
+<p>Les endpoints REST sont testés manuellement avec Postman ou <code>curl</code>.</p>
+<p>Exemples :</p>
+<pre><code class="language-text">POST /api/ingestion/measurements
+GET /api/quality/status
+POST /api/air-quality/measurements
+GET /api/alerting/status
+</code></pre>
+<p>Ces tests permettent de vérifier :</p>
+<ul>
+<li>le démarrage du service ;</li>
+<li>le routage REST ;</li>
+<li>la sérialisation JSON ;</li>
+<li>la réponse HTTP ;</li>
+<li>l’intégration avec Kafka.</li>
+</ul>
+<h3 id="35-tests-kafka-manuels">3.5 Tests Kafka manuels</h3>
+<p>Kafka est testé avec <code>kafka-console-consumer</code>.</p>
+<p>Exemple :</p>
+<pre><code class="language-shell">kafka-console-consumer --bootstrap-server localhost:9092 --topic measurements.received --from-beginning
+</code></pre>
+<p>Cela permet de vérifier qu’un événement est réellement publié dans le bon topic.</p>
+<p>Topics testés :</p>
+<ul>
+<li><code>measurements.received</code> ;</li>
+<li><code>measurements.validated</code> ;</li>
+<li><code>measurements.rejected</code> ;</li>
+<li><code>air-quality.alert.detected</code> ;</li>
+<li><code>air-quality.alert.detected.dlq</code>.</li>
+</ul>
+<p>---</p>
+<h2 id="4-exemple-de-test-unitaire-ingestion-service">4. Exemple de test unitaire — <code>ingestion-service</code></h2>
+<p>Le test suivant vérifie qu’une mesure brute valide est acceptée et qu’un événement <code>MeasurementReceived</code> est publié.</p>
+<pre><code class="language-java">@Test
+void shouldAcceptRawMeasurementAndPublishMeasurementReceivedEvent() {
+    RawMeasurementCommand command = new RawMeasurementCommand(
+            &quot;ZFE-1&quot;,
+            &quot;AIR-STATION-042&quot;,
+            &quot;NO2&quot;,
+            220.5,
+            Instant.parse(&quot;2026-05-06T14:29:58Z&quot;)
+    );
+
+    when(correlationIdGenerator.generate()).thenReturn(&quot;corr-12345&quot;);
+
+    IngestionResult result = service.ingest(command);
+
+    assertEquals(&quot;ACCEPTED&quot;, result.status());
+    assertEquals(&quot;corr-12345&quot;, result.correlationId());
+
+    ArgumentCaptor&lt;MeasurementReceivedEvent&gt; eventCaptor =
+            ArgumentCaptor.forClass(MeasurementReceivedEvent.class);
+
+    verify(publisher).publish(eventCaptor.capture());
+
+    MeasurementReceivedEvent event = eventCaptor.getValue();
+
+    assertEquals(&quot;MeasurementReceived&quot;, event.eventType());
+    assertEquals(&quot;1.0&quot;, event.eventVersion());
+    assertEquals(&quot;corr-12345&quot;, event.correlationId());
+    assertEquals(&quot;ingestion-service&quot;, event.source());
+    assertEquals(&quot;ZFE-1&quot;, event.zoneId());
+    assertEquals(&quot;AIR-STATION-042&quot;, event.stationId());
+    assertEquals(&quot;NO2&quot;, event.indicator());
+    assertEquals(220.5, event.value());
+}
+</code></pre>
+<h3 id="ce-que-ce-test-valide">Ce que ce test valide</h3>
+<ul>
+<li>La mesure est acceptée.</li>
+<li>Un <code>correlationId</code> est généré.</li>
+<li>Un événement <code>MeasurementReceived</code> est créé.</li>
+<li>Le publisher est appelé.</li>
+<li>Kafka n’est pas nécessaire pour le test.</li>
+</ul>
+<p>---</p>
+<h2 id="5-exemple-de-mock">5. Exemple de mock</h2>
+<p>Dans le test d’ingestion, Kafka n’est pas utilisé directement.</p>
+<p>Le port de publication est mocké :</p>
+<pre><code class="language-java">private final MeasurementReceivedPublisher publisher =
+        mock(MeasurementReceivedPublisher.class);
+</code></pre>
+<p>Puis le test vérifie que la publication a été demandée :</p>
+<pre><code class="language-java">verify(publisher).publish(eventCaptor.capture());
+</code></pre>
+<p>Cela montre que la logique métier est testée indépendamment de l’infrastructure.</p>
+<p>---</p>
+<h2 id="6-exemple-de-stub">6. Exemple de stub</h2>
+<p>Le générateur de <code>correlationId</code> est stubbé :</p>
+<pre><code class="language-java">when(correlationIdGenerator.generate()).thenReturn(&quot;corr-12345&quot;);
+</code></pre>
+<p>Cela permet de vérifier précisément la valeur attendue :</p>
+<pre><code class="language-java">assertEquals(&quot;corr-12345&quot;, result.correlationId());
+assertEquals(&quot;corr-12345&quot;, event.correlationId());
+</code></pre>
+<p>Le test devient donc prévisible et reproductible.</p>
+<p>---</p>
+<h2 id="7-exemple-de-test-unitaire-quality-service">7. Exemple de test unitaire — <code>quality-service</code></h2>
+<p>Le service qualité vérifie si une mesure reçue est valide ou non.</p>
+<h3 id="cas-valide">Cas valide</h3>
+<pre><code class="language-java">@Test
+void shouldPublishMeasurementValidatedWhenMeasurementIsValid() {
+    MeasurementReceivedEvent receivedEvent = validMeasurementReceived();
+
+    service.checkQuality(receivedEvent);
+
+    ArgumentCaptor&lt;MeasurementValidatedEvent&gt; captor =
+            ArgumentCaptor.forClass(MeasurementValidatedEvent.class);
+
+    verify(validatedPublisher).publish(captor.capture());
+    verifyNoInteractions(rejectedPublisher);
+
+    MeasurementValidatedEvent validatedEvent = captor.getValue();
+
+    assertEquals(&quot;MeasurementValidated&quot;, validatedEvent.eventType());
+    assertEquals(&quot;1.0&quot;, validatedEvent.eventVersion());
+    assertEquals(&quot;corr-12345&quot;, validatedEvent.correlationId());
+    assertEquals(&quot;quality-service&quot;, validatedEvent.source());
+    assertEquals(&quot;ZFE-1&quot;, validatedEvent.zoneId());
+}
+</code></pre>
+<h3 id="cas-invalide">Cas invalide</h3>
+<pre><code class="language-java">@Test
+void shouldPublishMeasurementRejectedWhenZoneIdIsMissing() {
+    MeasurementReceivedEvent receivedEvent = new MeasurementReceivedEvent(
+            &quot;evt-002&quot;,
+            &quot;MeasurementReceived&quot;,
+            &quot;1.0&quot;,
+            &quot;corr-12345&quot;,
+            Instant.parse(&quot;2026-05-06T14:30:00Z&quot;),
+            &quot;ingestion-service&quot;,
+            &quot;&quot;,
+            &quot;AIR-STATION-042&quot;,
+            &quot;NO2&quot;,
+            220.5,
+            Instant.parse(&quot;2026-05-06T14:29:58Z&quot;)
+    );
+
+    service.checkQuality(receivedEvent);
+
+    verifyNoInteractions(validatedPublisher);
+    verify(rejectedPublisher).publish(argThat(rejectedEvent -&gt;
+            rejectedEvent.eventType().equals(&quot;MeasurementRejected&quot;)
+                    \\\&amp;\\\&amp; rejectedEvent.reason().equals(&quot;zoneId is required&quot;)
+    ));
+}
+</code></pre>
+<h3 id="ce-que-ces-tests-valident">Ce que ces tests valident</h3>
+<ul>
+<li>Une mesure valide produit <code>MeasurementValidated</code>.</li>
+<li>Une mesure invalide produit <code>MeasurementRejected</code>.</li>
+<li>Les publishers Kafka sont mockés.</li>
+<li>La logique de validation est testée indépendamment de Kafka.</li>
+</ul>
+<p>---</p>
+<h2 id="8-exemple-de-test-unitaire-air-quality-service">8. Exemple de test unitaire — <code>air-quality-service</code></h2>
+<p>Le service <code>air-quality-service</code> calcule un niveau d’alerte selon les seuils.</p>
+<p>Exemple :</p>
+<pre><code class="language-java">@Test
+void shouldReturnCriticalWhenNo2IsAboveCriticalThreshold() {
+    AirQualityMeasurement measurement =
+            new AirQualityMeasurement(&quot;ZFE-1&quot;, &quot;AIR-STATION-042&quot;, Pollutant.NO2, 220);
+
+    AlertLevel result = service.calculateAlertLevel(measurement);
+
+    assertEquals(AlertLevel.CRITICAL, result);
+}
+</code></pre>
+<p>Ce test vérifie la règle métier :</p>
+<pre><code class="language-text">NO2 &gt;= 200 → CRITICAL
+</code></pre>
+<p>---</p>
+<h2 id="9-exemple-de-test-unitaire-alerting-service">9. Exemple de test unitaire — <code>alerting-service</code></h2>
+<p>Le service <code>alerting-service</code> vérifie qu’une alerte critique déclenche une notification CSU.</p>
+<pre><code class="language-java">@Test
+void shouldNotifyCsuWhenAirQualityAlertIsCritical() {
+    AirQualityAlertDetectedEvent event = criticalNo2Event(&quot;event-1&quot;);
+
+    when(processedEventRepository.hasAlreadyBeenProcessed(&quot;event-1&quot;))
+            .thenReturn(false);
+
+    alertingService.handle(event);
+
+    verify(notificationPort).notifyCsu(event);
+    verify(processedEventRepository).markAsProcessed(&quot;event-1&quot;);
+}
+</code></pre>
+<p>Ce test vérifie que :</p>
+<ul>
+<li>une alerte <code>CRITICAL</code> déclenche une notification ;</li>
+<li>l’<code>eventId</code> est marqué comme traité ;</li>
+<li>la notification est testée via un mock.</li>
+</ul>
+<p>---</p>
+<h2 id="10-test-didempotence">10. Test d’idempotence</h2>
+<p>Le service <code>alerting-service</code> doit ignorer un événement déjà traité.</p>
+<pre><code class="language-java">@Test
+void shouldIgnoreEventWhenEventIdWasAlreadyProcessed() {
+    AirQualityAlertDetectedEvent event = criticalNo2Event(&quot;event-1&quot;);
+
+    when(processedEventRepository.hasAlreadyBeenProcessed(&quot;event-1&quot;))
+            .thenReturn(true);
+
+    alertingService.handle(event);
+
+    verifyNoInteractions(notificationPort);
+    verify(processedEventRepository, never()).markAsProcessed(&quot;event-1&quot;);
+}
+</code></pre>
+<p>Ce test valide une règle importante en architecture asynchrone :</p>
+<pre><code class="language-text">Un événement reçu deux fois ne doit pas déclencher deux notifications.
+</code></pre>
+<p>---</p>
+<h2 id="11-test-du-design-pattern-state-sensor">11. Test du Design Pattern State — <code>Sensor</code></h2>
+<p>La classe <code>Sensor</code> est testée indépendamment de Spring et Kafka.</p>
+<pre><code class="language-java">@Test
+void activeSensorShouldBeAbleToSendMeasurement() {
+    Sensor sensor = new Sensor(
+            &quot;SENSOR-001&quot;,
+            &quot;AIR-STATION-042&quot;,
+            &quot;ZFE-1&quot;,
+            new ActiveSensorState()
+    );
+
+    assertTrue(sensor.canSendMeasurement());
+    assertEquals(&quot;ACTIVE&quot;, sensor.status());
+}
+</code></pre>
+<p>Autre exemple :</p>
+<pre><code class="language-java">@Test
+void faultySensorShouldNotBeAbleToSendMeasurement() {
+    Sensor sensor = new Sensor(
+            &quot;SENSOR-001&quot;,
+            &quot;AIR-STATION-042&quot;,
+            &quot;ZFE-1&quot;,
+            new FaultySensorState()
+    );
+
+    assertFalse(sensor.canSendMeasurement());
+    assertEquals(&quot;FAULTY&quot;, sensor.status());
+}
+</code></pre>
+<p>Ces tests vérifient que le comportement du capteur dépend bien de son état.</p>
+<p>---</p>
+<h2 id="12-demarche-tdd-utilisee">12. Démarche TDD utilisée</h2>
+<p>La démarche TDD appliquée est :</p>
+<pre><code class="language-text">Red → Green → Refactor
+</code></pre>
+<h3 id="red">Red</h3>
+<p>Écriture d’un test qui échoue.</p>
+<p>Exemple :</p>
+<pre><code class="language-text">shouldPublishMeasurementValidatedWhenMeasurementIsValid
+</code></pre>
+<p>Le test échoue car la classe ou le comportement n’existe pas encore.</p>
+<h3 id="green">Green</h3>
+<p>Implémentation minimale pour faire passer le test.</p>
+<h3 id="refactor">Refactor</h3>
+<p>Amélioration du code sans changer le comportement.</p>
+<p>Exemples :</p>
+<ul>
+<li>extraction de <code>rejectionReason()</code> ;</li>
+<li>extraction de constantes ;</li>
+<li>séparation des publishers Kafka.</li>
+</ul>
+<p>---</p>
+<h2 id="13-tests-manuels-avec-postman">13. Tests manuels avec Postman</h2>
+<p>Des tests manuels sont réalisés avec Postman pour vérifier les routes REST.</p>
+<h3 id="ingestion-service"><code>ingestion-service</code></h3>
+<pre><code class="language-http">POST http://localhost:8082/api/ingestion/measurements
+</code></pre>
+<p>Body :</p>
+<pre><code class="language-json">{
+  &quot;zoneId&quot;: &quot;ZFE-1&quot;,
+  &quot;stationId&quot;: &quot;AIR-STATION-042&quot;,
+  &quot;indicator&quot;: &quot;NO2&quot;,
+  &quot;value&quot;: 220.5,
+  &quot;timestamp&quot;: &quot;2026-05-06T14:29:58Z&quot;
+}
+</code></pre>
+<p>Réponse attendue :</p>
+<pre><code class="language-json">{
+  &quot;status&quot;: &quot;ACCEPTED&quot;,
+  &quot;correlationId&quot;: &quot;...&quot;
+}
+</code></pre>
+<h3 id="air-quality-service"><code>air-quality-service</code></h3>
+<pre><code class="language-http">POST http://localhost:8080/api/air-quality/measurements
+</code></pre>
+<p>Body :</p>
+<pre><code class="language-json">{
+  &quot;zoneId&quot;: &quot;ZFE-1&quot;,
+  &quot;stationId&quot;: &quot;AIR-STATION-042&quot;,
+  &quot;pollutant&quot;: &quot;NO2&quot;,
+  &quot;value&quot;: 220.5
+}
+</code></pre>
+<p>Réponse attendue :</p>
+<pre><code class="language-json">{
+  &quot;alertLevel&quot;: &quot;CRITICAL&quot;
+}
+</code></pre>
+<h3 id="alerting-service"><code>alerting-service</code></h3>
+<pre><code class="language-http">GET http://localhost:8081/api/alerting/status
+</code></pre>
+<p>Réponse attendue :</p>
+<pre><code class="language-json">{
+  &quot;status&quot;: &quot;UP&quot;,
+  &quot;service&quot;: &quot;alerting-service&quot;
+}
+</code></pre>
+<h3 id="quality-service"><code>quality-service</code></h3>
+<pre><code class="language-http">GET http://localhost:8083/api/quality/status
+</code></pre>
+<p>Réponse attendue :</p>
+<pre><code class="language-json">{
+  &quot;status&quot;: &quot;UP&quot;,
+  &quot;service&quot;: &quot;quality-service&quot;
+}
+</code></pre>
+<p>---</p>
+<h2 id="14-tests-kafka-manuels">14. Tests Kafka manuels</h2>
+<h3 id="verifier-measurementsreceived">Vérifier <code>measurements.received</code></h3>
+<pre><code class="language-shell">kafka-console-consumer --bootstrap-server localhost:9092 --topic measurements.received --from-beginning
+</code></pre>
+<h3 id="verifier-measurementsvalidated">Vérifier <code>measurements.validated</code></h3>
+<pre><code class="language-shell">kafka-console-consumer --bootstrap-server localhost:9092 --topic measurements.validated --from-beginning
+</code></pre>
+<h3 id="verifier-measurementsrejected">Vérifier <code>measurements.rejected</code></h3>
+<pre><code class="language-shell">kafka-console-consumer --bootstrap-server localhost:9092 --topic measurements.rejected --from-beginning
+</code></pre>
+<h3 id="verifier-air-qualityalertdetected">Vérifier <code>air-quality.alert.detected</code></h3>
+<pre><code class="language-shell">kafka-console-consumer --bootstrap-server localhost:9092 --topic air-quality.alert.detected --from-beginning
+</code></pre>
+<p>---</p>
+<h2 id="15-tests-end-to-end-manuels">15. Tests end-to-end manuels</h2>
+<p>Le flux complet attendu est :</p>
+<pre><code class="language-text">ingestion-service
+→ measurements.received
+→ quality-service
+→ measurements.validated
+→ air-quality-service
+→ air-quality.alert.detected
+→ alerting-service
+</code></pre>
+<p>Commande de départ :</p>
+<pre><code class="language-shell">curl -X POST http://localhost:8082/api/ingestion/measurements   -H &quot;Content-Type: application/json&quot;   -d '{
+    &quot;zoneId&quot;: &quot;ZFE-1&quot;,
+    &quot;stationId&quot;: &quot;AIR-STATION-042&quot;,
+    &quot;indicator&quot;: &quot;NO2&quot;,
+    &quot;value&quot;: 220.5,
+    &quot;timestamp&quot;: &quot;2026-05-06T14:29:58Z&quot;
+  }'
+</code></pre>
+<p>Résultat attendu :</p>
+<ul>
+<li><code>MeasurementReceived</code> est publié ;</li>
+<li><code>MeasurementValidated</code> est publié ;</li>
+<li><code>AirQualityAlertDetected</code> est publié ;</li>
+<li><code>alerting-service</code> prépare une notification CSU.</li>
+</ul>
+<p>---</p>
+<h2 id="16-ci-et-automatisation">16. CI et automatisation</h2>
+<p>Chaque microservice possède une pipeline CI dédiée.</p>
+<p>Exemples :</p>
+<pre><code class="language-text">ingestion-ci.yml
+quality-ci.yml
+air-quality-ci.yml
+alerting-ci.yml
+</code></pre>
+<p>Chaque CI exécute :</p>
+<pre><code class="language-text">compile
+unit tests
+package
+</code></pre>
+<p>Objectifs :</p>
+<ul>
+<li>détecter rapidement les régressions ;</li>
+<li>éviter les commits cassés ;</li>
+<li>garantir que les tests passent.</li>
+</ul>
+<p>---</p>
+<h2 id="17-limites-actuelles">17. Limites actuelles</h2>
+<p>Les tests Kafka sont encore principalement manuels.</p>
+<p>Améliorations possibles :</p>
+<ul>
+<li>ajouter Testcontainers Kafka ;</li>
+<li>ajouter des tests d’intégration automatisés ;</li>
+<li>ajouter des tests de contrat automatisés ;</li>
+<li>ajouter des tests de performance simples ;</li>
+<li>ajouter des tests sur la DLQ.</li>
+</ul>
+<p>---</p>
+<h2 id="18-synthese">18. Synthèse</h2>
+<p>La stratégie de tests repose sur :</p>
+<ul>
+<li>tests unitaires rapides ;</li>
+<li>mocks pour isoler Kafka ;</li>
+<li>stubs pour contrôler les valeurs générées ;</li>
+<li>tests TDD <code>Red → Green → Refactor</code> ;</li>
+<li>tests manuels Postman ;</li>
+<li>tests manuels Kafka ;</li>
+<li>CI par microservice.</li>
+</ul>
+<p>Cette stratégie permet de garder le projet fiable, évolutif et cohérent avec les pratiques XP.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

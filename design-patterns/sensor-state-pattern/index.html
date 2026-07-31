@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="UrbanHub Team">
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Sensor State Pattern - UrbanHub Smart City</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">UrbanHub Smart City</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Accueil</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Clean Code</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../clean-code/clean-code-examples/" class="dropdown-item">SOLID, DRY, KISS</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tests</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tests/testing-strategy/" class="dropdown-item">Stratégie de tests</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design Patterns</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Sensor State Pattern</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Outils</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tools/tools-used/" class="dropdown-item">Outils utilisés</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Communication</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../communication/technical-vs-functional/" class="dropdown-item">Technique vs fonctionnelle</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Conventions</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../conventions/conventional-commits/" class="dropdown-item">Conventional Commits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Contrats</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../contracts/" class="dropdown-item">Vue d’ensemble</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Événements</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../contracts/events/air-quality-alert-detected/" class="dropdown-item">AirQualityAlertDetected</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-received/" class="dropdown-item">MeasurementReceived</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-validated/" class="dropdown-item">MeasurementValidated</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-rejected/" class="dropdown-item">MeasurementRejected</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Ateliers XP</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../xp-workshops/atelier-2-air-quality/" class="dropdown-item">Atelier 2 — Air Quality</a>
+</li>
+                                    
+<li>
+    <a href="../../xp-workshops/atelier-3-smart-city-distributed/" class="dropdown-item">Atelier 3 — Smart City distribuée</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Architecture</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../architecture/sequence-flow/" class="dropdown-item">Flux événementiel</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../tests/testing-strategy/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../tools/tools-used/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="2"><a href="#solution" class="nav-link">Solution</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#classes" class="nav-link">Classes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#responsabilites" class="nav-link">Responsabilités</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#principes-poo-respectes" class="nav-link">Principes POO respectés</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#tests" class="nav-link">Tests</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p># Design Pattern State — Sensor / Capteur</p>
+<p>## Contexte</p>
+<p>Dans l’architecture UrbanHub, les capteurs sont à l’origine des mesures envoyées vers la passerelle IoT puis vers le service d’ingestion.</p>
+<p>Un capteur peut avoir plusieurs états :</p>
+<p>- ACTIVE</p>
+<p>- INACTIVE</p>
+<p>- FAULTY</p>
+<p>Le comportement du capteur dépend de son état.</p>
+<p>## Problème</p>
+<p>Sans design pattern, la classe <code>Sensor</code> pourrait contenir plusieurs conditions :</p>
+<p>```java</p>
+<p>if (status.equals("ACTIVE")) { ... }</p>
+<p>if (status.equals("FAULTY")) { ... }</p>
+<p>Cela rendrait la classe moins lisible, moins extensible et moins conforme aux principes POO.</p>
+<h2 id="solution">Solution</h2>
+<p>Le design pattern State permet d’isoler le comportement lié à chaque état dans une classe dédiée.</p>
+<h2 id="classes">Classes</h2>
+<p>Sensor
+SensorState
+ActiveSensorState
+InactiveSensorState
+FaultySensorState</p>
+<h2 id="responsabilites">Responsabilités</h2>
+<h3 id="sensor">Sensor</h3>
+<ul>
+<li>Encapsule l’identité du capteur.</li>
+<li>Expose les comportements métier.</li>
+<li>Délègue le comportement dépendant de l’état à <code>SensorState</code>.</li>
+</ul>
+<h3 id="sensorstate">SensorState</h3>
+<ul>
+<li>Définit le contrat commun des états.</li>
+</ul>
+<h3 id="activesensorstate">ActiveSensorState</h3>
+<ul>
+<li>Autorise l’envoi de mesures.</li>
+</ul>
+<h3 id="inactivesensorstate">InactiveSensorState</h3>
+<ul>
+<li>Interdit l’envoi de mesures.</li>
+</ul>
+<h3 id="faultysensorstate">FaultySensorState</h3>
+<ul>
+<li>Interdit l’envoi de mesures car le capteur est en panne.</li>
+</ul>
+<hr />
+<h2 id="principes-poo-respectes">Principes POO respectés</h2>
+<h3 id="encapsulation">Encapsulation</h3>
+<p>Les attributs du capteur sont privés et uniquement exposés par des méthodes contrôlées.</p>
+<h3 id="single-responsibility-principle">Single Responsibility Principle</h3>
+<p>Chaque état possède sa propre responsabilité.</p>
+<h3 id="openclosed-principle">Open/Closed Principle</h3>
+<p>Il est possible d’ajouter un nouvel état sans modifier massivement la classe <code>Sensor</code>.</p>
+<h3 id="kiss">KISS</h3>
+<p>La logique est simple et lisible.</p>
+<hr />
+<h2 id="tests">Tests</h2>
+<p>Les tests vérifient :</p>
+<ul>
+<li>qu’un capteur actif peut envoyer une mesure ;</li>
+<li>qu’un capteur inactif ne peut pas envoyer une mesure ;</li>
+<li>qu’un capteur défaillant ne peut pas envoyer une mesure ;</li>
+<li>que les transitions d’état fonctionnent ;</li>
+<li>que les données obligatoires sont validées.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

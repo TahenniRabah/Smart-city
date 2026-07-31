@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="UrbanHub Team">
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>SOLID, DRY, KISS - UrbanHub Smart City</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">UrbanHub Smart City</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Accueil</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Clean Code</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">SOLID, DRY, KISS</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tests</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tests/testing-strategy/" class="dropdown-item">Stratégie de tests</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design Patterns</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../design-patterns/sensor-state-pattern/" class="dropdown-item">Sensor State Pattern</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Outils</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tools/tools-used/" class="dropdown-item">Outils utilisés</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Communication</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../communication/technical-vs-functional/" class="dropdown-item">Technique vs fonctionnelle</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Conventions</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../conventions/conventional-commits/" class="dropdown-item">Conventional Commits</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Contrats</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../contracts/" class="dropdown-item">Vue d’ensemble</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Événements</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../contracts/events/air-quality-alert-detected/" class="dropdown-item">AirQualityAlertDetected</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-received/" class="dropdown-item">MeasurementReceived</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-validated/" class="dropdown-item">MeasurementValidated</a>
+</li>
+            
+<li>
+    <a href="../../contracts/events/measurement-rejected/" class="dropdown-item">MeasurementRejected</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Ateliers XP</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../xp-workshops/atelier-2-air-quality/" class="dropdown-item">Atelier 2 — Air Quality</a>
+</li>
+                                    
+<li>
+    <a href="../../xp-workshops/atelier-3-smart-city-distributed/" class="dropdown-item">Atelier 3 — Smart City distribuée</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Architecture</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../architecture/sequence-flow/" class="dropdown-item">Flux événementiel</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../.." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../tests/testing-strategy/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#clean-code-exemples-solid-dry-kiss-et-refactoring" class="nav-link">Clean Code — Exemples SOLID, DRY, KISS et Refactoring</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-objectif" class="nav-link">1. Objectif</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-exemple-solid-single-responsibility-principle" class="nav-link">2. Exemple SOLID — Single Responsibility Principle</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-solid-dependency-inversion-principle" class="nav-link">3. SOLID — Dependency Inversion Principle</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-solid-openclosed-principle-avec-le-state-pattern" class="nav-link">4. SOLID — Open/Closed Principle avec le State Pattern</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-encapsulation-dans-la-classe-sensor" class="nav-link">5. Encapsulation dans la classe Sensor</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-dry-dont-repeat-yourself" class="nav-link">6. DRY — Don’t Repeat Yourself</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-kiss-keep-it-simple" class="nav-link">7. KISS — Keep It Simple</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-exemple-de-refactoring-securise-par-les-tests" class="nav-link">8. Exemple de refactoring sécurisé par les tests</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-exemple-de-mock" class="nav-link">9. Exemple de mock</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#10-exemple-de-stub" class="nav-link">10. Exemple de stub</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#11-exemple-de-test-unitaire" class="nav-link">11. Exemple de test unitaire</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#12-separation-metier-infrastructure" class="nav-link">12. Séparation métier / infrastructure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#13-synthese" class="nav-link">13. Synthèse</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="clean-code-exemples-solid-dry-kiss-et-refactoring">Clean Code — Exemples SOLID, DRY, KISS et Refactoring</h1>
+<h2 id="1-objectif">1. Objectif</h2>
+<p>Ce document présente plusieurs exemples de Clean Code appliqués dans le projet <strong>Smart City / UrbanHub</strong>.</p>
+<p>Les exemples couvrent :</p>
+<ul>
+<li>SOLID ;</li>
+<li>DRY ;</li>
+<li>KISS ;</li>
+<li>séparation des responsabilités ;</li>
+<li>encapsulation ;</li>
+<li>refactoring sécurisé par les tests ;</li>
+<li>usage de mocks et ports applicatifs.</li>
+</ul>
+<p>---</p>
+<h2 id="2-exemple-solid-single-responsibility-principle">2. Exemple SOLID — Single Responsibility Principle</h2>
+<h3 id="contexte">Contexte</h3>
+<p>Dans le service <code>ingestion-service</code>, la logique métier d’ingestion est séparée de la publication Kafka.</p>
+<p>La classe <code>MeasurementIngestionService</code> ne connaît pas directement Kafka. Elle dépend d’un port applicatif :</p>
+<pre><code class="language-java">public interface MeasurementReceivedPublisher {
+
+    void publish(MeasurementReceivedEvent event);
+
+}
+</code></pre>
+<p>L’implémentation Kafka est isolée dans une classe dédiée :</p>
+<pre><code class="language-java">@Component
+public class KafkaMeasurementReceivedPublisher implements MeasurementReceivedPublisher {
+
+    @Override
+    public void publish(MeasurementReceivedEvent event) {
+        kafkaTemplate.send(topicName, event.zoneId(), event);
+    }
+}
+</code></pre>
+<p>Chaque classe a une seule responsabilité :</p>
+<ul>
+<li><code>MeasurementIngestionService</code> → logique métier d’ingestion ;</li>
+<li><code>KafkaMeasurementReceivedPublisher</code> → publication Kafka ;</li>
+<li><code>MeasurementReceivedEvent</code> → contrat événementiel.</li>
+</ul>
+<p>---</p>
+<h2 id="3-solid-dependency-inversion-principle">3. SOLID — Dependency Inversion Principle</h2>
+<p>La classe métier dépend d’une abstraction et non d’une implémentation technique Kafka.</p>
+<pre><code class="language-java">public class MeasurementIngestionService {
+
+    private final MeasurementReceivedPublisher publisher;
+    private final CorrelationIdGenerator correlationIdGenerator;
+}
+</code></pre>
+<p>En test unitaire, le publisher peut être mocké :</p>
+<pre><code class="language-java">private final MeasurementReceivedPublisher publisher =
+        mock(MeasurementReceivedPublisher.class);
+</code></pre>
+<p>Cela permet de tester la logique métier sans démarrer Kafka.</p>
+<p>---</p>
+<h2 id="4-solid-openclosed-principle-avec-le-state-pattern">4. SOLID — Open/Closed Principle avec le State Pattern</h2>
+<p>La classe <code>Sensor</code> utilise le design pattern <strong>State</strong>.</p>
+<p>Un capteur peut être dans plusieurs états :</p>
+<ul>
+<li><code>ACTIVE</code> ;</li>
+<li><code>INACTIVE</code> ;</li>
+<li><code>FAULTY</code>.</li>
+</ul>
+<p>Interface commune :</p>
+<pre><code class="language-java">public interface SensorState {
+
+    boolean canSendMeasurement();
+
+    String name();
+}
+</code></pre>
+<p>États implémentés :</p>
+<ul>
+<li><code>ActiveSensorState</code> ;</li>
+<li><code>InactiveSensorState</code> ;</li>
+<li><code>FaultySensorState</code>.</li>
+</ul>
+<p>La classe <code>Sensor</code> est ouverte à l’extension : on peut ajouter un nouvel état sans modifier fortement le code existant.</p>
+<p>---</p>
+<h2 id="5-encapsulation-dans-la-classe-sensor">5. Encapsulation dans la classe <code>Sensor</code></h2>
+<pre><code class="language-java">public class Sensor {
+
+    private final String sensorId;
+    private final String stationId;
+    private final String zoneId;
+    private SensorState state;
+
+    public boolean canSendMeasurement() {
+        return state.canSendMeasurement();
+    }
+
+    public void activate() {
+        this.state = new ActiveSensorState();
+    }
+
+    public void deactivate() {
+        this.state = new InactiveSensorState();
+    }
+
+    public void markAsFaulty() {
+        this.state = new FaultySensorState();
+    }
+}
+</code></pre>
+<p>Les attributs sont privés et les transitions d’état passent par des méthodes métier.</p>
+<p>---</p>
+<h2 id="6-dry-dont-repeat-yourself">6. DRY — Don’t Repeat Yourself</h2>
+<p>Les valeurs répétées sont centralisées dans des constantes.</p>
+<pre><code class="language-java">private static final String EVENT\\\_TYPE = &quot;MeasurementReceived&quot;;
+private static final String EVENT\\\_VERSION = &quot;1.0&quot;;
+private static final String SOURCE = &quot;ingestion-service&quot;;
+private static final String ACCEPTED = &quot;ACCEPTED&quot;;
+</code></pre>
+<p>Avantages :</p>
+<ul>
+<li>moins de duplication ;</li>
+<li>moins d’erreurs de saisie ;</li>
+<li>meilleure lisibilité ;</li>
+<li>évolution plus simple.</li>
+</ul>
+<p>---</p>
+<h2 id="7-kiss-keep-it-simple">7. KISS — Keep It Simple</h2>
+<p>Dans <code>quality-service</code>, les règles restent simples et lisibles.</p>
+<pre><code class="language-java">private String rejectionReason(MeasurementReceivedEvent event) {
+    if (isBlank(event.zoneId())) return &quot;zoneId is required&quot;;
+    if (isBlank(event.stationId())) return &quot;stationId is required&quot;;
+    if (isBlank(event.indicator())) return &quot;indicator is required&quot;;
+    if (event.timestamp() == null) return &quot;timestamp is required&quot;;
+    if (event.value() &lt; 0) return &quot;value must be positive or zero&quot;;
+
+    return null;
+}
+</code></pre>
+<p>La règle est compréhensible, testable et adaptée à une première small release.</p>
+<p>---</p>
+<h2 id="8-exemple-de-refactoring-securise-par-les-tests">8. Exemple de refactoring sécurisé par les tests</h2>
+<p>Avant refactor, la validation pouvait être directement écrite dans la méthode principale.</p>
+<p>Après refactor, elle est isolée dans une méthode dédiée :</p>
+<pre><code class="language-java">private String rejectionReason(MeasurementReceivedEvent event) {
+    if (isBlank(event.zoneId())) {
+        return &quot;zoneId is required&quot;;
+    }
+
+    if (isBlank(event.stationId())) {
+        return &quot;stationId is required&quot;;
+    }
+
+    if (isBlank(event.indicator())) {
+        return &quot;indicator is required&quot;;
+    }
+
+    if (event.timestamp() == null) {
+        return &quot;timestamp is required&quot;;
+    }
+
+    if (event.value() &lt; 0) {
+        return &quot;value must be positive or zero&quot;;
+    }
+
+    return null;
+}
+</code></pre>
+<p>Bénéfices :</p>
+<ul>
+<li>méthode principale plus courte ;</li>
+<li>règles métier isolées ;</li>
+<li>lisibilité améliorée ;</li>
+<li>tests unitaires conservés ;</li>
+<li>refactor sécurisé.</li>
+</ul>
+<p>---</p>
+<h2 id="9-exemple-de-mock">9. Exemple de mock</h2>
+<p>Dans <code>MeasurementIngestionServiceTest</code>, le publisher Kafka est remplacé par un mock.</p>
+<pre><code class="language-java">private final MeasurementReceivedPublisher publisher =
+        mock(MeasurementReceivedPublisher.class);
+</code></pre>
+<p>Cela permet de tester la logique métier sans dépendre de Kafka.</p>
+<p>---</p>
+<h2 id="10-exemple-de-stub">10. Exemple de stub</h2>
+<p>Le générateur de <code>correlationId</code> est stubbé pour retourner une valeur connue.</p>
+<pre><code class="language-java">when(correlationIdGenerator.generate()).thenReturn(&quot;corr-12345&quot;);
+</code></pre>
+<p>Cela rend le test déterministe.</p>
+<p>---</p>
+<h2 id="11-exemple-de-test-unitaire">11. Exemple de test unitaire</h2>
+<pre><code class="language-java">@Test
+void shouldAcceptRawMeasurementAndPublishMeasurementReceivedEvent() {
+    RawMeasurementCommand command = new RawMeasurementCommand(
+            &quot;ZFE-1&quot;,
+            &quot;AIR-STATION-042&quot;,
+            &quot;NO2&quot;,
+            220.5,
+            Instant.parse(&quot;2026-05-06T14:29:58Z&quot;)
+    );
+
+    when(correlationIdGenerator.generate()).thenReturn(&quot;corr-12345&quot;);
+
+    IngestionResult result = service.ingest(command);
+
+    assertEquals(&quot;ACCEPTED&quot;, result.status());
+    assertEquals(&quot;corr-12345&quot;, result.correlationId());
+
+    ArgumentCaptor&lt;MeasurementReceivedEvent&gt; eventCaptor =
+            ArgumentCaptor.forClass(MeasurementReceivedEvent.class);
+
+    verify(publisher).publish(eventCaptor.capture());
+
+    MeasurementReceivedEvent event = eventCaptor.getValue();
+
+    assertEquals(&quot;MeasurementReceived&quot;, event.eventType());
+    assertEquals(&quot;1.0&quot;, event.eventVersion());
+    assertEquals(&quot;corr-12345&quot;, event.correlationId());
+    assertEquals(&quot;ZFE-1&quot;, event.zoneId());
+}
+</code></pre>
+<p>Ce test démontre que :</p>
+<ul>
+<li>la mesure est acceptée ;</li>
+<li>un <code>correlationId</code> est généré ;</li>
+<li>un événement est publié ;</li>
+<li>Kafka est mocké ;</li>
+<li>le test reste unitaire.</li>
+</ul>
+<p>---</p>
+<h2 id="12-separation-metier-infrastructure">12. Séparation métier / infrastructure</h2>
+<h3 id="logique-metier">Logique métier</h3>
+<ul>
+<li><code>MeasurementIngestionService</code> ;</li>
+<li><code>MeasurementQualityService</code> ;</li>
+<li><code>AirQualityAnalysisService</code> ;</li>
+<li><code>AlertingService</code>.</li>
+</ul>
+<h3 id="infrastructure">Infrastructure</h3>
+<ul>
+<li><code>KafkaMeasurementReceivedPublisher</code> ;</li>
+<li><code>MeasurementReceivedConsumer</code> ;</li>
+<li><code>AirQualityAlertProducer</code> ;</li>
+<li><code>AirQualityAlertConsumer</code> ;</li>
+<li><code>KafkaProducerConfig</code> ;</li>
+<li><code>KafkaConsumerConfig</code>.</li>
+</ul>
+<p>Cette séparation permet :</p>
+<ul>
+<li>des tests plus simples ;</li>
+<li>moins de couplage technique ;</li>
+<li>une meilleure maintenabilité ;</li>
+<li>une architecture plus proche des principes hexagonaux.</li>
+</ul>
+<p>---</p>
+<h2 id="13-synthese">13. Synthèse</h2>
+<p>Le projet applique plusieurs pratiques Clean Code :</p>
+<ul>
+<li><strong>SOLID</strong> : séparation des responsabilités et dépendance aux abstractions ;</li>
+<li><strong>DRY</strong> : constantes pour éviter les duplications ;</li>
+<li><strong>KISS</strong> : règles métier simples et lisibles ;</li>
+<li><strong>Refactor</strong> : extraction des règles de validation ;</li>
+<li><strong>POO</strong> : encapsulation dans <code>Sensor</code> ;</li>
+<li><strong>Design Pattern</strong> : State Pattern pour gérer les états du capteur ;</li>
+<li><strong>Tests</strong> : mocks, stubs et tests unitaires rapides.</li>
+</ul>
+<p>Ces pratiques rendent le projet plus maintenable, testable et évolutif.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
