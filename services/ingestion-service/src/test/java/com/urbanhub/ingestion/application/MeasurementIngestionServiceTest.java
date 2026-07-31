@@ -2,6 +2,7 @@ package com.urbanhub.ingestion.application;
 
 
 import com.urbanhub.ingestion.events.MeasurementReceivedEvent;
+import com.urbanhub.ingestion.observability.UrbanHubMetrics;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -19,10 +20,11 @@ import static org.mockito.Mockito.verifyNoInteractions;
 public class MeasurementIngestionServiceTest {
 
     private final MeasurementReceivedPublisher publisher = mock(MeasurementReceivedPublisher.class);
-    private final CorrelationIdGenerator correlationIdGenerator = mock(CorrelationIdGenerator.class);
+    private final CorrelationIdGenerator correlationIdGenerator =   mock(CorrelationIdGenerator.class);
+    private final UrbanHubMetrics metrics = mock(UrbanHubMetrics.class);
 
     private final MeasurementIngestionService service =
-            new MeasurementIngestionService(publisher, correlationIdGenerator);
+            new MeasurementIngestionService(publisher, correlationIdGenerator, metrics);
 
     @Test
     void shouldAcceptRawMeasurementAndPublishMeasurementReceivedEvent() {

@@ -1,6 +1,6 @@
 package com.urbanhub.ingestion.application;
 
-
+import com.urbanhub.ingestion.observability.UrbanHubMetrics;
 import com.urbanhub.ingestion.events.MeasurementReceivedEvent;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +17,16 @@ public class MeasurementIngestionService {
 
     private final MeasurementReceivedPublisher publisher;
     private final CorrelationIdGenerator correlationIdGenerator;
+    private final UrbanHubMetrics metrics;
 
     public MeasurementIngestionService(
             MeasurementReceivedPublisher publisher,
-            CorrelationIdGenerator correlationIdGenerator
+            CorrelationIdGenerator correlationIdGenerator,
+            UrbanHubMetrics metrics
     ) {
         this.publisher = publisher;
         this.correlationIdGenerator = correlationIdGenerator;
+        this.metrics = metrics;
     }
 
     public IngestionResult ingest(RawMeasurementCommand command) {
@@ -45,6 +48,7 @@ public class MeasurementIngestionService {
         );
 
         publisher.publish(event);
+        metrics.recordAccepted(command.timestamp());
 
         return new IngestionResult(ACCEPTED, correlationId);
     }
